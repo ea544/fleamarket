@@ -16,5 +16,7 @@
 	<h1>Buenos dias a todos</h1>
 	<a href="${contextPath}/customerForm">Create an account</a>
 	<a href="events/event">Click here to go to events</a>
+		<a href="vendors">Click here to go to vendors</a>
+	
 </body>
 </html>
