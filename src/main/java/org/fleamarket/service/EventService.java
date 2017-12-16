@@ -1,15 +1,28 @@
 package org.fleamarket.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.fleamarket.domain.Event;
 import org.fleamarket.domain.Vendor;
+import org.fleamarket.interfaces.IEventService;
+import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 
-public class EventService {
+public class EventService implements IEventService{
+	private SessionFactory sessionFactory;
 	
-	public Event createEvent() {
-		return null;
-		
+	
+	
+	public EventService(SessionFactory sessionFactory) {
+		super();
+		this.sessionFactory = sessionFactory;
+	}
+
+	@Transactional
+	public void createEvent(Date date, double organizingCostEstimate, double subscriptionFee) {
+		Event event = new Event(date, organizingCostEstimate,  subscriptionFee);
+		sessionFactory.getCurrentSession().persist(event);
 	}
 	
 	

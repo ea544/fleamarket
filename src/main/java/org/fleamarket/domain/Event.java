@@ -25,6 +25,16 @@ public class Event {
 	}
 	
 	
+	
+	public Event(Date date, double organizingCostEstimate, double subscriptionFee) {
+		super();
+		this.date = date;
+		this.organizingCostEstimate = organizingCostEstimate;
+		this.subscriptionFee = subscriptionFee;
+	}
+
+
+
 	public Event(Date date, double organizingCostEstimate, double subscriptionFee, String review, String organizer,
 			Address address) {
 		super();

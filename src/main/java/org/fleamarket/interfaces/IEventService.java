@@ -1,13 +1,14 @@
-package interfaces;
+package org.fleamarket.interfaces;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.fleamarket.domain.Event;
 import org.fleamarket.domain.Vendor;
 
-public interface IEvent {
+public interface IEventService {
 	
-	public abstract Event createEvent();
+	public abstract void createEvent(Date date, double organizingCostEstimate, double subscriptionFee);
 	
 	public abstract void updateEvent(Event event);
 	
