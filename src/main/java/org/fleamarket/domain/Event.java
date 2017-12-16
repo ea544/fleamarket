@@ -2,6 +2,7 @@ package org.fleamarket.domain;
 
 import java.sql.Date;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,7 +16,8 @@ public class Event {
 	private double subscriptionFee;
 	private String review;
 	private String organizer;
-	//private Address address;
+	@Embedded
+	private Address address;
 	
 	@Id
 	@GeneratedValue
@@ -50,7 +52,7 @@ public class Event {
 		this.subscriptionFee = subscriptionFee;
 		this.review = review;
 		this.organizer = organizer;
-		//this.address = address;
+		this.address = address;
 	}
 	
 	
@@ -109,12 +111,12 @@ public class Event {
 	public void setOrganizer(String organizer) {
 		this.organizer = organizer;
 	}
-	/*public Address getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 	public void setAddress(Address address) {
 		this.address = address;
-	}*/
+	}
 	public int getEventId() {
 		return eventId;
 	}

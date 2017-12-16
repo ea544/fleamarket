@@ -24,17 +24,12 @@ public class EventController {
 		return "event";
 	}
 	
+	
 	//save event
 
 	@RequestMapping(value = "/eventForm", method = RequestMethod.POST)
 	public String createEvent(@ModelAttribute("event") Event event, ModelMap model) {
-		model.addAttribute("title", event.getTitle());
-		model.addAttribute("description", event.getDescription());
-		model.addAttribute("organizingCostEstimate", event.getOrganizingCostEstimate());
-		model.addAttribute("subscriptionFee", event.getSubscriptionFee());
-		model.addAttribute("review", event.getReview());
-		model.addAttribute("organizer", event.getOrganizer());
-		//model.addAttribute("address", event.getAddress());
+
 		eventService.createEvent(event);
 		return "redirect:/events";
 	}
