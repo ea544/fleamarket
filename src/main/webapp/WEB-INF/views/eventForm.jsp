@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form method="Post" action="/fleamarket/event/create" modelAttribute="event">
+	<form:form method="POST" action="/fleamarket/event/create" modelAttribute="event">
 		<table>
 			<tr>
 				<td>Cost:</td>

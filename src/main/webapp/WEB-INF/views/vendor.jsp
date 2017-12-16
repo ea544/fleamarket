@@ -4,11 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Flea Market App</title>
+<title>FleaMarket :: Vendors Home</title>
 </head>
 <body>
-	<h1>Buenos dias a todos</h1>
-	<a href="events/event">Click here to go to events</a>
-	<a href="vendors">Click here to go to vendors</a>
+	<h1>You are so welcome</h1>
+	<a href="vendorForm">Click here to create a profile</a>
 </body>
 </html>
