@@ -3,13 +3,14 @@ package org.fleamarket.service;
 import java.sql.Date;
 import java.util.List;
 
+import org.fleamarket.domain.Address;
 import org.fleamarket.domain.Event;
 import org.fleamarket.domain.Vendor;
 import org.fleamarket.interfaces.IEventService;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
-public class EventService implements IEventService {
+public class EventService {
 
 	private SessionFactory sessionFactory;
 
@@ -18,8 +19,7 @@ public class EventService implements IEventService {
 	}
 
 	@Transactional
-	public void createEvent(Date date, double organizingCostEstimate, double subscriptionFee) {
-		Event event = new Event(date, organizingCostEstimate, subscriptionFee);
+	public void createEvent(Event event) {
 		sessionFactory.getCurrentSession().persist(event);
 	}
 
@@ -51,5 +51,7 @@ public class EventService implements IEventService {
 	public Event searchEvent(String filter) {
 		return null;
 	}
+
+
 
 }

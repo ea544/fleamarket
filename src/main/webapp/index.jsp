@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>Buenos dias a todos</h1>
-	<a href="events/event">Click here to go to events</a>
+	<a href="events">Click here to go to events</a>
 	<a href="vendors">Click here to go to vendors</a>
 </body>
 </html>

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="eventForm">Click here to create an event</a>
+	<h1>Events</h1>
+	<a href="events/eventForm">Click here to create an event</a>
 </body>
 </html>
