@@ -5,10 +5,13 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc" 
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
 	http://www.springframework.org/schema/mvc/spring-mvc.xsd
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/tx 
+		   http://www.springframework.org/schema/tx/spring-tx.xsd
 	       http://www.springframework.org/schema/aop 
 	       http://www.springframework.org/schema/aop/spring-aop.xsd
 		   http://www.springframework.org/schema/beans 
@@ -56,9 +59,9 @@
 		<constructor-arg name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="vendorController" class="org.fleamarket.controller.VendorController">
+	<!-- <bean id="vendorController" class="org.fleamarket.controller.VendorController">
 		<constructor-arg index="0" ref="vendorService" />
-	</bean>
+	</bean> -->
 
 	<!-- hibernate Properties -->
 	<bean id="hibernateProperties"
@@ -74,10 +77,10 @@
 		</property>
 	</bean>
 	
-	<!--<tx:annotation-driven transaction-manager="txManager" />
+	<tx:annotation-driven transaction-manager="txManager" />
 	<bean id="txManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>-->
+	</bean>
 	
 </beans>

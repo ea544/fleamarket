@@ -8,7 +8,7 @@
 <title>FleaMarket :: Vendor Form</title>
 </head>
 <body>
-	<form:form method="POST" action="vendors/venderForm" modelAttribute="vendor">
+	<form:form method="POST" action="vendorForm" modelAttribute="vendor">
 		<table>
 			<tr>
 				<td>First name:</td>
