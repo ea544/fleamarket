@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h1>Buenos dias a todos</h1>
-	<a href="event">Click here to go to events</a>
+	<a href="events/event">Click here to go to events</a>
 </body>
 </html>
