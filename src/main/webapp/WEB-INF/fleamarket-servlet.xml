@@ -39,6 +39,8 @@
 			<list>
 				<value>org.fleamarket.domain.Event</value>
 				<value>org.fleamarket.domain.Vendor</value>
+				<value>org.fleamarket.domain.Customer</value>
+				<value>org.fleamarket.domain.Review</value>
 			</list>
 		</property>
 	</bean>
@@ -48,7 +50,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost/fleamarket" />
 		<property name="username" value="root" />
-		<property name="password" value="sovello" />
+		<property name="password" value="root" />
 	</bean>
 	
 	<bean id="eventService" class="org.fleamarket.service.EventService">
@@ -58,6 +60,14 @@
 	<bean id="vendorService" class="org.fleamarket.service.VendorService">
 		<constructor-arg name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<bean id="customerService" class="org.fleamarket.service.CustomerService">
+		<constructor-arg name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- <bean id="reviewService" class="org.fleamarket.service.ReviewService">
+		<constructor-arg name="sessionFactory" ref="sessionFactory" />
+	</bean> -->
 	
 	<!-- <bean id="vendorController" class="org.fleamarket.controller.VendorController">
 		<constructor-arg index="0" ref="vendorService" />

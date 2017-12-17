@@ -48,6 +48,14 @@
 	<bean id="vendorController" class="org.fleamarket.controller.VendorController">
 		<constructor-arg index="0" ref="eventService" />
 	</bean>
+	
+	
+	
+	
+	
+	
+	
+	
 
 	<!-- hibernate Properties -->
 	<bean id="hibernateProperties"

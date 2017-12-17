@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class CustomerController {
 	@Autowired
     private CustomerService customerService;
-
+	
+	
     @RequestMapping(value = "/customerForm", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("customerForm", new Customer());
