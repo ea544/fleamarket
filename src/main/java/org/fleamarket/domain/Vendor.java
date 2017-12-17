@@ -22,6 +22,10 @@ public class Vendor {
 		this.firstname = firstname;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
 	public String getLastname() {
 		return lastname;
 	}
