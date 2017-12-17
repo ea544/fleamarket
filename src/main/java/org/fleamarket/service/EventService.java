@@ -22,6 +22,8 @@ public class EventService {
 		this.sessionFactory = sessionFactory;
 	}
 	
+
+	@SuppressWarnings("unchecked")
 	public List<Event> getEvents(){
 		return sessionFactory.getCurrentSession().createQuery("from event").list();
 	}
@@ -31,10 +33,12 @@ public class EventService {
 		sessionFactory.getCurrentSession().persist(event);
 	}
 	
-	
-	
 
-	public void deleteEvent(Event event) {
+	public void deleteEvent(int id) {
+		Event event = searchEvent(id);
+		if(event != null) {
+			sessionFactory.getCurrentSession().delete(event);
+		}
 	}
 
 	public void editEvent(Event event) {
@@ -54,8 +58,8 @@ public class EventService {
 
 	}
 
-	public Event searchEvent(String filter) {
-		return null;
+	public Event searchEvent(int id) {
+		return (Event) sessionFactory.getCurrentSession().createQuery("from event where id = id").setParameter("id", id);
 	}
 
 
