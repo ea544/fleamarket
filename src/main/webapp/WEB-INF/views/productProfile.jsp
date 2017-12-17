@@ -5,17 +5,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Flea Market :: Vendor Profile</title>
+<title>Flea Market :: Product Profile</title>
 </head>
 <body>
 	<table>
 		<tbody>
-			<tr><td>${vendor.firstname}</td></tr>
-			<tr><td>${vendor.lastname}</td></tr>
-			<tr><td>${vendor.email}</td></tr>
+			<tr><td>${product.productName}</td></tr>
+			<tr><td>${product.price}</td></tr>
+			<tr><td>${product.quantity}</td></tr>
+			<tr><td>${product.description}</td></tr>
 		</tbody>
 	</table>
-	<a href="">Click here to create a new event</a><br />
-	<a href="/vendors/vendorForm/${vendor.id}">Click here to edit your profile</a>
+	<a href="../productForm/${product.id}">Click here to edit this product</a>
 </body>
 </html>

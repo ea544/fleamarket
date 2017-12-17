@@ -39,6 +39,7 @@
 			<list>
 				<value>org.fleamarket.domain.Event</value>
 				<value>org.fleamarket.domain.Vendor</value>
+				<value>org.fleamarket.domain.Product</value>
 			</list>
 		</property>
 	</bean>
@@ -56,6 +57,9 @@
 	</bean>
 	
 	<bean id="vendorService" class="org.fleamarket.service.VendorService">
+		<constructor-arg name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="productService" class="org.fleamarket.service.ProductService">
 		<constructor-arg name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	

@@ -39,9 +39,6 @@ public class VendorController {
 	 */
 	@RequestMapping(value = "/vendorForm", method = RequestMethod.POST)
 	public String createVendor(@ModelAttribute("vendor") Vendor vendor, ModelMap model) {
-//		model.addAttribute("firstname", vendor.getFirstname());
-//		model.addAttribute("lastname", vendor.getLastname());
-//		model.addAttribute("email", vendor.getEmail());
 		Integer id = vendorService.createVendor(vendor);
 		return "redirect:/vendors/vendorProfile/"+id;
 	}
