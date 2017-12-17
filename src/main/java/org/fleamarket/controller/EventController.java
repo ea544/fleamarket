@@ -6,10 +6,13 @@ import org.fleamarket.domain.Vendor;
 import org.fleamarket.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
 @RequestMapping(value = "/events")
@@ -19,9 +22,18 @@ public class EventController {
 	EventService eventService;
 	
 	
+	
 	@RequestMapping(value = { "", "/event" }, method = RequestMethod.GET)
 	public String redirectRoot() {
 		return "event";
+	}
+	
+	//Show all events
+	
+	@RequestMapping(value="/events", method=RequestMethod.GET)
+	public String getAll(Model model) {
+		model.addAttribute("events", eventService.getEvents());
+		return "redirect:/events";
 	}
 	
 	
@@ -29,7 +41,6 @@ public class EventController {
 
 	@RequestMapping(value = "/eventForm", method = RequestMethod.POST)
 	public String createEvent(@ModelAttribute("event") Event event, ModelMap model) {
-
 		eventService.createEvent(event);
 		return "redirect:/events";
 	}
@@ -43,5 +54,14 @@ public class EventController {
 		model.addAttribute("edit", false);
 		return "eventForm";
 	}
+	
+	//Edit event
+	
+	@RequestMapping(value="/eventForm/{id}", method=RequestMethod.POST)
+	public String editEvent(@ModelAttribute("event")Event event, @PathVariable int id) {
+		eventService.editEvent(event);
+		return "redirect:/events";
+	}
+
 
 }

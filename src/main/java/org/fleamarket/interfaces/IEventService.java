@@ -12,8 +12,6 @@ public interface IEventService {
 	public abstract void createEvent(String title, String description, double organizingCostEstimate, double subscriptionFee, String review, String organizer,
 			Address address);
 	
-	public abstract void updateEvent(Event event);
-	
 	public abstract void deleteEvent(Event event);
 	
 	public abstract void editEvent(Event event);

@@ -7,7 +7,46 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Events</h1>
+	<h1>List of events so far :)</h1>
+	<table>
+	<c:forEach var="event" items="${events}">
+	<tr>
+		<td>Title:</td>
+		<td>${event.title}</td>
+	</tr>
+
+	<tr>
+		<td>Description:</td>
+		<td>${event.description}</td>
+	</tr>
+	
+	
+	<tr>
+		<td>Organizing Cost Estimate:</td>
+		<td>${event.organizingCostEstimate}</td>
+	</tr>
+
+	<tr>
+		<td>Subscription Fee:</td>
+		<td>${event.subscriptionFee}</td>
+	</tr>
+	
+	
+	<tr>
+		<td>Review:</td>
+		<td>${event.review}</td>
+	</tr>
+	
+
+	<tr>
+		<td>Organizer:</td>
+		<td>${event.organizer}</td>
+	</tr>
+
+	</c:forEach>
+	</table>
 	<a href="events/eventForm">Click here to create an event</a>
+	<br>
+	<a href="events/eventForm">Click here to edit an event</a>
 </body>
 </html>
