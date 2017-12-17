@@ -9,6 +9,7 @@ import org.fleamarket.domain.Event;
 import org.fleamarket.domain.Vendor;
 import org.fleamarket.interfaces.IEventService;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,9 +24,10 @@ public class EventService {
 	}
 	
 
-	@SuppressWarnings("unchecked")
+	@Transactional
 	public List<Event> getEvents(){
-		return sessionFactory.getCurrentSession().createQuery("from event").list();
+		Query<Event> query = sessionFactory.getCurrentSession().createQuery("from Event", Event.class);
+		return query.list();
 	}
 
 	@Transactional

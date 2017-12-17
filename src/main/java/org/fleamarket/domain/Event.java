@@ -2,14 +2,23 @@ package org.fleamarket.domain;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.CollectionId;
+
 @Entity
 public class Event {
+	
+	@Id
+	@GeneratedValue
+	private int eventId;
+	
 	private Date date;
+	
 	private String title;
 	private String description;
 	private double organizingCostEstimate;
@@ -18,12 +27,7 @@ public class Event {
 	private String organizer;
 	@Embedded
 	private Address address;
-	
-	@Id
-	@GeneratedValue
-	private int eventId;
-	
-		
+			
 	public Event() {
 		super();
 	}

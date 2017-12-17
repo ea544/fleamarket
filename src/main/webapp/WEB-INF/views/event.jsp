@@ -12,45 +12,34 @@
 	<table>
 		<tbody>
 			<tr>
-				<td>Title:</td>
-				<td>${events.title}</td>
+				<th>Id</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Date</th>
+				<th>Event cost</th>
+				<th>Subscription Fee</th>
+				<th>Review</th>
+				<th>Organizer</th>
 			</tr>
-
-			<tr>
-				<td>Description:</td>
-				<td>${event.description}</td>
-			</tr>
+			<c:forEach var="event" items="${events}">
 
 
-			<tr>
-				<td>Organizing Cost Estimate:</td>
-				<td>${event.organizingCostEstimate}</td>
-			</tr>
-
-			<tr>
-				<td>Subscription Fee:</td>
-				<td>${event.subscriptionFee}</td>
-			</tr>
-
-
-			<tr>
-				<td>Review:</td>
-				<td>${event.review}</td>
-			</tr>
-
-
-			<tr>
-				<td>Organizer:</td>
-				<td>${event.organizer}</td>
-			</tr>
+				<tr>
+					<td>${event.eventId}</td>
+					<td>${event.title}</td>
+					<td>${event.description}</td>
+					<td>${event.organizingCostEstimate}</td>
+					<td>${event.subscriptionFee}</td>
+					<td>${event.review}</td>
+					<td>${event.organizer}</td>
+					<td> <a href="eventForm">Click here to edit an event </a></td>
+					<td> <a href="eventForm">Click here to delete an event</a> </td>
+				</tr>
+			</c:forEach>
 		<tbody>
 	</table>
-	<a href="events/eventForm">Click here to create an event</a>
+	<a href="eventForm">Click here to create an event</a>
 	<br>
-	<a href="events/eventForm">Click here to edit an event</a>
-	<br>
-	<a href="events/eventForm">Click here to delete an event</a>
-	<br>
-	<a href="events/eventForm">Click here to search an event</a>
+	<a href="eventForm">Click here to search an event</a>
 </body>
 </html>

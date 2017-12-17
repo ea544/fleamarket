@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-@RequestMapping(value = "/events")
+/*@RequestMapping(value = "/events")*/
 
 public class EventController {
 	@Autowired
@@ -23,31 +23,40 @@ public class EventController {
 	
 	
 	
-	@RequestMapping(value = { "", "/event" }, method = RequestMethod.GET)
+/*	@RequestMapping(value = { "", "/event" }, method = RequestMethod.GET)
 	public String redirectRoot() {
 		return "event";
-	}
+	}*/
 	
 	//Show all events
 	
-	@RequestMapping(value="/events", method=RequestMethod.GET)
+	@RequestMapping(value="/event/eventList", method=RequestMethod.GET)
 	public String getAll(Model model) {
+		
+		System.out.println("Events List");
+		
 		model.addAttribute("events", eventService.getEvents());
-		return "redirect:/events";
+			
+		/*return "redirect:/events";*/
+		
+		return "event";
+		
 	}
 	
 	
 	//save event
 
-	@RequestMapping(value = "/eventForm", method = RequestMethod.POST)
+	@RequestMapping(value = "/event/eventForm", method = RequestMethod.POST)
 	public String createEvent(@ModelAttribute("event") Event event, ModelMap model) {
 		eventService.createEvent(event);
-		return "redirect:/events";
+		model.addAttribute("events", eventService.getEvents());
+		/*return "redirect:/events";*/
+		return "event";
 	}
 	
 	//Event form
 
-	@RequestMapping(value = "/eventForm", method = RequestMethod.GET)
+	@RequestMapping(value = "/event/eventForm", method = RequestMethod.GET)
 	public String eventForm(ModelMap model) {
 		Event event = new Event();
 		model.addAttribute("event", event);
@@ -57,15 +66,15 @@ public class EventController {
 	
 	//Edit event
 	
-	@RequestMapping(value="/eventForm/{id}", method=RequestMethod.POST)
+	@RequestMapping(value="/event/editForm/{id}", method=RequestMethod.POST)
 	public String editEvent(@ModelAttribute("event")Event event, @PathVariable int id) {
 		eventService.editEvent(event);
-		return "redirect:/events";
+		return "eventForm";
 	}
 	
 	//Search an event
 	
-	@RequestMapping(value="/eventForm/{id}", method=RequestMethod.POST)
+	/*@RequestMapping(value="/eventForm/{id}", method=RequestMethod.POST)
 	public String searchEvent(@ModelAttribute("event")Event event, @PathVariable int id) {
 		eventService.searchEvent(id);
 		return "redirect:/events";
@@ -77,7 +86,7 @@ public class EventController {
 	public String deleteEvent(@ModelAttribute("event")Event event, @PathVariable int id) {
 		eventService.deleteEvent(id);
 		return "redirect:/events";
-	}
+	}*/
 
 
 }
