@@ -33,7 +33,7 @@
 					<td>${event.review}</td>
 					<td>${event.organizer}</td>
 					<td> <a href="getForm/${event.eventId}">Click here to edit an event </a></td>
-					<td> <a href="eventForm">Click here to delete an event</a> </td>
+					<td> <a href="deleteEvent/${event.eventId}">Click here to delete an event</a> </td>
 				</tr>
 			</c:forEach>
 		<tbody>

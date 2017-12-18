@@ -36,7 +36,7 @@ public class EventService {
 		sessionFactory.getCurrentSession().persist(event);
 	}
 	
-
+	@Transactional
 	public void deleteEvent(int id) {
 		Event event = getEventById(id);
 		if(event != null) {

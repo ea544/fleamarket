@@ -89,15 +89,16 @@ public class EventController {
 	public String searchEvent(@ModelAttribute("event")Event event, @PathVariable int id) {
 		eventService.searchEvent(id);
 		return "redirect:/events";
-	}	
+	}	*/
 	
 	//delete event
 	
-	@RequestMapping(value="/eventForm/{id}", method=RequestMethod.POST)
-	public String deleteEvent(@ModelAttribute("event")Event event, @PathVariable int id) {
+	@RequestMapping(value="/event/deleteEvent/{id}", method=RequestMethod.GET)
+	public String deleteEvent(@PathVariable("id") int id, Model model) {
 		eventService.deleteEvent(id);
-		return "redirect:/events";
-	}*/
+		model.addAttribute("events", eventService.getEvents());
+		return "event";
+	}
 
 
 }
