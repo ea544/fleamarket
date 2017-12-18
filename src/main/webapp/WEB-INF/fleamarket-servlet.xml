@@ -41,6 +41,7 @@
 				<value>org.fleamarket.domain.Vendor</value>
 				<value>org.fleamarket.domain.Customer</value>
 				<value>org.fleamarket.domain.Review</value>
+				<value>org.fleamarket.domain.Product</value>
 			</list>
 		</property>
 	</bean>

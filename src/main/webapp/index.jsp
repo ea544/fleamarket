@@ -18,5 +18,6 @@
 	<a href="events/event">Click here to go to events</a>
 		<a href="vendors">Click here to go to vendors</a>
 	
+	<a href="products">Click here to go to products</a>
 </body>
 </html>
