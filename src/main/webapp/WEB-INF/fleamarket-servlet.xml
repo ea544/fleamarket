@@ -47,6 +47,8 @@
 				<value>org.fleamarket.domain.Event</value>
 				<value>org.fleamarket.domain.Vendor</value>
 				<value>org.fleamarket.domain.Product</value>
+				<value>org.fleamarket.domain.Customer</value>
+				<value>org.fleamarket.domain.Review</value>
 			</list>
 		</property>
 	</bean>
@@ -74,6 +76,14 @@
 	 <bean id="eventController" class="org.fleamarket.controller.EventController">
 		<constructor-arg index="0" ref="eventService" />
 	</bean>
+	
+	<bean id="customerService" class="org.fleamarket.service.CustomerService">
+		<constructor-arg name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- <bean id="reviewService" class="org.fleamarket.service.ReviewService">
+		<constructor-arg name="sessionFactory" ref="sessionFactory" />
+	</bean> -->
 	
 	<!-- <bean id="vendorController" class="org.fleamarket.controller.VendorController">
 		<constructor-arg index="0" ref="vendorService" />

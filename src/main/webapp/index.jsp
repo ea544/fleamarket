@@ -8,6 +8,8 @@
 		  <li><a href="<c:url value='event/eventList' />" >Click here to go to events</a></li>
 		  <li><a href="vendors">Click here to go to vendors</a></li>
 		  <li><a href="products">Click here to go to products</a></li>
+      <li><a href="customers">Click here to go to customers</a></li>
+      <li><a href="customerForm">Click here to go to registration</a></li>
 		</ul>
 	</div>
 </body>
