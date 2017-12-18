@@ -29,6 +29,7 @@ public class EventService {
 		Query<Event> query = sessionFactory.getCurrentSession().createQuery("from Event", Event.class);
 		return query.list();
 	}
+	
 
 	@Transactional
 	public void createEvent(Event event) {
@@ -37,12 +38,13 @@ public class EventService {
 	
 
 	public void deleteEvent(int id) {
-		Event event = searchEvent(id);
+		Event event = getEventById(id);
 		if(event != null) {
 			sessionFactory.getCurrentSession().delete(event);
 		}
 	}
-
+	
+	@Transactional
 	public void editEvent(Event event) {
 		sessionFactory.getCurrentSession().update(event);
 	}
@@ -60,8 +62,15 @@ public class EventService {
 
 	}
 
-	public Event searchEvent(int id) {
-		return (Event) sessionFactory.getCurrentSession().createQuery("from event where id = id").setParameter("id", id);
+	@Transactional
+	public Event getEventById(int id) {
+		
+		System.out.println("Id in service " + id);
+	
+		Query query = sessionFactory.getCurrentSession().createQuery("FROM Event p WHERE p.eventId = :id");
+		query.setParameter("id", id);
+		Event event = (Event)query.getSingleResult();
+		return event;
 	}
 
 

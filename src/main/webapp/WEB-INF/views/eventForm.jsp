@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
@@ -5,7 +6,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form method="POST" action="eventForm" modelAttribute="event">
+	<c:url var="eventFormAction" value="/event/eventForm" ></c:url>
+	<form:form method="POST" action="${eventFormAction}" modelAttribute="event">
 		<table>
 
 			<tr>
@@ -65,8 +67,7 @@
 				<td><form:input type="text" path="review" /></td>
 			</tr>
 
-
-
+<form:hidden path="eventId"/>
 
 		</table>
 		<input type="submit" value="Submit" />

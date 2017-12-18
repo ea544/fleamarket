@@ -43,12 +43,20 @@ public class EventController {
 		
 	}
 	
-	
 	//save event
 
 	@RequestMapping(value = "/event/eventForm", method = RequestMethod.POST)
 	public String createEvent(@ModelAttribute("event") Event event, ModelMap model) {
-		eventService.createEvent(event);
+		
+		if(event.getEventId() == 0) {
+			
+			eventService.createEvent(event);
+		} else {
+			eventService.editEvent(event);
+			//update
+		}
+		
+		
 		model.addAttribute("events", eventService.getEvents());
 		/*return "redirect:/events";*/
 		return "event";
@@ -66,9 +74,12 @@ public class EventController {
 	
 	//Edit event
 	
-	@RequestMapping(value="/event/editForm/{id}", method=RequestMethod.POST)
-	public String editEvent(@ModelAttribute("event")Event event, @PathVariable int id) {
-		eventService.editEvent(event);
+	@RequestMapping(value="/event/getForm/{id}", method=RequestMethod.GET)
+	public String editEvent(@PathVariable("id") int id, Model model) {
+		
+		System.out.println("id : " + id);
+		model.addAttribute("event", eventService.getEventById(id));
+	//	eventService.editEvent(event);
 		return "eventForm";
 	}
 	
