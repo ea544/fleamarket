@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:sec="http://www.springframework.org/schema/security"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<sec:http auto-config="true">		
+		<sec:access-denied-handler error-page="/403" />
+		<sec:intercept-url pattern="/books" access="isAnonymous()"/>
+		<sec:intercept-url pattern="/addBook.html" access="hasRole('ROLE_ADMIN')"/>
+		<sec:intercept-url pattern="/books/**" access="hasRole('ROLE_USER')"/>
+		<sec:form-login />
+		<sec:logout logout-url="/logout" />
+	</sec:http>
+
+	<sec:authentication-manager>
+		<sec:authentication-provider>
+		<!-- <sec:password-encoder hash="bcrypt"/> -->
+			<sec:user-service>
+				<!-- you need {} to use the password encoder. values: bcrypt, noop, scrypt
+				sha256, and pbkdf2 -->
+				<sec:user name="sovello" password="{noop}sovello" authorities="ROLE_USER" />
+				<sec:user name="carlton" password="{noop}carlton" authorities="ROLE_ADMIN" />
+				<sec:user name="evelyn" password="{noop}evelyn" authorities="ROLE_ADMIN" />
+			</sec:user-service>
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+
+</beans>
