@@ -12,6 +12,7 @@
 	<c:url var="deleteEventFunction" value="/event/deleteEvent" ></c:url>
 	<c:url var="getEventFunction" value="/event/getForm" ></c:url>
 	<c:url var="addVendorFunction" value="/event/eventAddVendor" ></c:url>
+	<c:url var="addEventFunction" value="/event/eventForm" ></c:url>
 	<table>
 		<tbody>
 			<tr>
@@ -42,15 +43,13 @@
 					 - ${vendor.firstname}
 					</c:forEach>
 					</td>
-					<td> <a href="${getEventFunction}/${event.eventId}">Edit</a></td>
 					<td> <a href="${deleteEventFunction}/${event.eventId}">Delete</a> </td>
+					<td> <a href="${getEventFunction}/${event.eventId}">Edit</a></td>
 					<td> <a href="${addVendorFunction}/${event.eventId}">Add Vendors</a> </td>
 				</tr>
 			</c:forEach>
 		<tbody>
 	</table>
-	<a href="eventForm">Click here to create an event</a>
-	<br>
-	<a href="eventForm">Click here to search an event</a>
+	<a href="${addEventFunction}">Click here to create an event</a>
 </body>
 </html>

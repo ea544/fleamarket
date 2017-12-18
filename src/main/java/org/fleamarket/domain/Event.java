@@ -33,7 +33,7 @@ public class Event {
 	private Address address;
 
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name = "id")
+	/*@JoinColumn(name = "id")*/
 	private List<Vendor> vendors = new ArrayList<Vendor>();
 
 	@OneToOne(cascade=CascadeType.ALL)
@@ -67,6 +67,10 @@ public class Event {
 		this.review = review;
 		this.organizer = organizer;
 		this.address = address;
+	}
+	
+	public void addVendor(Vendor vendor) {
+		this.vendors.add(vendor);
 	}
 
 	public String getTitle() {
