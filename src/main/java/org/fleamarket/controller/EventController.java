@@ -3,7 +3,9 @@ package org.fleamarket.controller;
 import org.fleamarket.domain.Address;
 import org.fleamarket.domain.Event;
 import org.fleamarket.domain.Vendor;
+import org.fleamarket.interfaces.IEventService;
 import org.fleamarket.service.EventService;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +20,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /*@RequestMapping(value = "/events")*/
 
 public class EventController {
+	
 	@Autowired
-	EventService eventService;
+	IEventService eventService;
+	
+	public EventController(IEventService eventService) {
+		this.eventService = eventService;
+	}
 	
 	
 	

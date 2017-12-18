@@ -59,6 +59,10 @@
 		<constructor-arg name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	 <bean id="eventController" class="org.fleamarket.controller.EventController">
+		<constructor-arg index="0" ref="eventService" />
+	</bean>
+	
 	<!-- <bean id="vendorController" class="org.fleamarket.controller.VendorController">
 		<constructor-arg index="0" ref="vendorService" />
 	</bean> -->

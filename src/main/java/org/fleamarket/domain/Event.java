@@ -27,7 +27,9 @@ public class Event {
 	private String organizer;
 	@Embedded
 	private Address address;
-			
+	
+	//private List<Vendor> vendor;
+	
 	public Event() {
 		super();
 	}

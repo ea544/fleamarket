@@ -9,6 +9,8 @@
 </head>
 <body>
 	<h1>List of events so far :)</h1>
+	<c:url var="deleteEventFunction" value="/event/deleteEvent" ></c:url>
+	<c:url var="getEventFunction" value="/event/getForm" ></c:url>
 	<table>
 		<tbody>
 			<tr>
@@ -32,8 +34,8 @@
 					<td>${event.subscriptionFee}</td>
 					<td>${event.review}</td>
 					<td>${event.organizer}</td>
-					<td> <a href="getForm/${event.eventId}">Click here to edit an event </a></td>
-					<td> <a href="deleteEvent/${event.eventId}">Click here to delete an event</a> </td>
+					<td> <a href="${getEventFunction}/${event.eventId}">Click here to edit an event </a></td>
+					<td> <a href="${deleteEventFunction}/${event.eventId}">Click here to delete an event</a> </td>
 				</tr>
 			</c:forEach>
 		<tbody>
