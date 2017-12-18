@@ -124,7 +124,7 @@ public class EventController {
 	
 	//add vendor
 	
-	@RequestMapping(value = "/event/eventAddVendor", method = RequestMethod.POST)
+	@RequestMapping(value = "/event/eventAddVendor", method = RequestMethod.GET)
 	public String addVendor(@ModelAttribute("vendor") Vendor vendor, @ModelAttribute("id") Integer id, ModelMap model) {
 		
 		if(vendor.getId() == 0) {
