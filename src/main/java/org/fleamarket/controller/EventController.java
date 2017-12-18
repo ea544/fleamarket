@@ -121,5 +121,24 @@ public class EventController {
 		return "eventVendors";
 		
 	}
+	
+	//add vendor
+	
+	@RequestMapping(value = "/event/eventAddVendor", method = RequestMethod.POST)
+	public String addVendor(@ModelAttribute("vendor") Vendor vendor, @ModelAttribute("id") Integer id, ModelMap model) {
+		
+		if(vendor.getId() == 0) {
+			
+			eventService.addVendor(id);
+		} else {
+			//eventService.editEvent(event);
+			//update
+		}
+		model.addAttribute("events", eventService.getEvents());
+
+		return "eventVendors";
+	}
+	
+	
 
 }

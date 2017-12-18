@@ -30,11 +30,6 @@ public class EventService implements IEventService{
 		return query.list();
 	}
 	
-	@Transactional
-	public List<Vendor> getVendors(){
-		Query<Vendor> query = sessionFactory.getCurrentSession().createQuery("from Vendor", Vendor.class);
-		return query.list();
-	}
 	
 
 	@Transactional
@@ -59,15 +54,6 @@ public class EventService implements IEventService{
 
 	}
 
-	public void addVendor(Vendor vendor) {
-
-	}
-
-	public List<Vendor> vendorsList() {
-		return null;
-
-	}
-
 	@Transactional
 	public Event getEventById(int id) {
 		
@@ -78,7 +64,33 @@ public class EventService implements IEventService{
 		Event event = (Event)query.getSingleResult();
 		return event;
 	}
+///////// vendors
+	
+	
+	@Transactional
+	public void addVendor(Integer id) {
+		Vendor vendor = getVendorById(id);
+		sessionFactory.getCurrentSession().persist(vendor);
 
+	}
+	
+	@Transactional
+	public Vendor getVendorById(Integer id) {
+		
+		System.out.println("IdVendor in service " + id);
+	
+		Query query = sessionFactory.getCurrentSession().createQuery("FROM Vendor p WHERE p.id = :id");
+		query.setParameter("id", id);
+		Vendor vendor = (Vendor)query.getSingleResult();
+		return vendor;
+	}
+	
+
+	@Transactional
+	public List<Vendor> getVendors(){
+		Query<Vendor> query = sessionFactory.getCurrentSession().createQuery("from Vendor", Vendor.class);
+		return query.list();
+	}
 
 
 }

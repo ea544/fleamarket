@@ -22,6 +22,7 @@
 				<th>Subscription Fee</th>
 				<th>Review</th>
 				<th>Organizer</th>
+				<th>Vendors</th>
 			</tr>
 			<c:forEach var="event" items="${events}">
 
@@ -30,12 +31,19 @@
 					<td>${event.eventId}</td>
 					<td>${event.title}</td>
 					<td>${event.description}</td>
+					<td></td>
 					<td>${event.organizingCostEstimate}</td>
 					<td>${event.subscriptionFee}</td>
 					<td>${event.review}</td>
-					<td>${event.organizer}</td>
-					<td> <a href="${getEventFunction}/${event.eventId}">Click here to edit an event </a></td>
-					<td> <a href="${deleteEventFunction}/${event.eventId}">Click here to delete an event</a> </td>
+					<td>${event.organizer.firstname}</td>
+					<td>
+					<c:forEach var="vendor" items="${event.vendors}">
+					 - ${vendor.firstname}
+					</c:forEach>
+					</td>
+					<td> <a href="${getEventFunction}/${event.eventId}">Edit</a></td>
+					<td> <a href="${deleteEventFunction}/${event.eventId}">Delete</a> </td>
+					<td> <a href="${deleteEventFunction}/${event.eventId}">Add Vendors</a> </td>
 				</tr>
 			</c:forEach>
 		<tbody>

@@ -32,7 +32,7 @@
 
 			<tr>
 				<td>Organizer:</td>
-				<td><form:input type="text" path="organizer" /></td>
+				<td><form:input type="text" path="organizer.firstname" /></td>
 			</tr>
 
 			<h2>Address Information:</h2>
