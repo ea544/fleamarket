@@ -30,6 +30,12 @@ public class EventService implements IEventService{
 		return query.list();
 	}
 	
+	@Transactional
+	public List<Vendor> getVendors(){
+		Query<Vendor> query = sessionFactory.getCurrentSession().createQuery("from Vendor", Vendor.class);
+		return query.list();
+	}
+	
 
 	@Transactional
 	public void createEvent(Event event) {

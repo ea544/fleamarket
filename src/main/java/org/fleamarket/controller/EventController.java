@@ -106,6 +106,20 @@ public class EventController {
 		model.addAttribute("events", eventService.getEvents());
 		return "event";
 	}
-
+	
+	//show vendors of the event
+	
+	@RequestMapping(value="/event/vendorList", method=RequestMethod.GET)
+	public String getAllVendors(Model model) {
+		
+		System.out.println("Vendors List");
+		
+		model.addAttribute("vendors", eventService.getVendors());
+			
+		/*return "redirect:/events";*/
+		
+		return "eventVendors";
+		
+	}
 
 }

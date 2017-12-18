@@ -1,12 +1,15 @@
 package org.fleamarket.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CollectionId;
 
@@ -28,7 +31,9 @@ public class Event {
 	@Embedded
 	private Address address;
 	
-	//private List<Vendor> vendor;
+	@OneToMany
+	@JoinColumn(name = "eventId")
+	private List<Vendor> vendors;
 	
 	public Event() {
 		super();
