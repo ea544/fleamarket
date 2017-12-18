@@ -2,42 +2,57 @@ package org.fleamarket.domain;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.CollectionId;
+
 @Entity
 public class Event {
-	private Date date;
-	private double organizingCostEstimate;
-	private double subscriptionFee;
-	private String review;
-	private String organizer;
-	private Address address;
 	
 	@Id
 	@GeneratedValue
 	private int eventId;
 	
-		
+	private Date date;
+	
+	private String title;
+	private String description;
+	private double organizingCostEstimate;
+	private double subscriptionFee;
+	private String review;
+	private String organizer;
+	@Embedded
+	private Address address;
+	
+	//private List<Vendor> vendor;
+	
 	public Event() {
 		super();
 	}
 	
 	
 	
-	public Event(Date date, double organizingCostEstimate, double subscriptionFee) {
+	public Event(String title, String description, double organizingCostEstimate, double subscriptionFee, String review, String organizer) {
 		super();
-		this.date = date;
+		this.title = title;
+		this.description =  description;
 		this.organizingCostEstimate = organizingCostEstimate;
 		this.subscriptionFee = subscriptionFee;
+		this.review = review;
+		this.organizer = organizer;
 	}
 
 
 
-	public Event(Date date, double organizingCostEstimate, double subscriptionFee, String review, String organizer,
+	public Event(String title, String description, Date date, double organizingCostEstimate, double subscriptionFee, String review, String organizer,
 			Address address) {
 		super();
+		this.title = title;
+		this.description =  description;
 		this.date = date;
 		this.organizingCostEstimate = organizingCostEstimate;
 		this.subscriptionFee = subscriptionFee;
@@ -45,6 +60,33 @@ public class Event {
 		this.organizer = organizer;
 		this.address = address;
 	}
+	
+	
+	
+	public String getTitle() {
+		return title;
+	}
+
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
 	public Date getDate() {
 		return date;
 	}

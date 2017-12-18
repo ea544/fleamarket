@@ -1,6 +1,7 @@
 package org.fleamarket.domain;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 
 @Embeddable
 public class Address {
@@ -10,10 +11,16 @@ public class Address {
 	private int zip;
 	private String country;
 	
-	
 	public Address() {
 		super();
 	}
+	
+	public Address(String street) {
+		super();
+		this.street = street;
+
+	}
+	
 
 	public Address(String street, String city, String state, int zip, String country) {
 		super();
