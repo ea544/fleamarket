@@ -19,6 +19,13 @@ public class VendorService {
 		return id;
 	}
 	
+	@Transactional
+	public void updateVendor(Vendor vendor) {
+		sessionFactory.getCurrentSession().update(vendor);
+		return;
+	}
+	
+	
 	@SuppressWarnings("rawtypes")
 	@Transactional
 	public Vendor getVendor(Integer id) {
