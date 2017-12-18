@@ -57,5 +57,17 @@ public class Vendor {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	@Override
+	public boolean equals(Object vendor) {
+		
+		if(vendor instanceof Vendor == false)
+			return false;
+		
+		Vendor v = (Vendor)vendor;
+		
+		return v.id == this.id;
+		
+	}
 
 }

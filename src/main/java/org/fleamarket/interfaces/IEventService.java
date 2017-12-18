@@ -3,6 +3,7 @@ package org.fleamarket.interfaces;
 import java.util.List;
 
 import org.fleamarket.domain.Event;
+import org.fleamarket.domain.Vendor;
 
 public interface IEventService {
 
@@ -16,4 +17,13 @@ public interface IEventService {
 
 	public Event getEventById(int id);
 
+	public void addVendor(Integer id, Integer idVendor);
+
+	public void deleteVendor(Integer id, Integer idVendor);
+
+	public Vendor getVendorById(Integer id);
+
+	public List<Vendor> getVendors();
+
+	public List<Vendor> getVendorsByEventId(Integer id);
 }
