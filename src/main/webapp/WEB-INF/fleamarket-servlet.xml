@@ -29,6 +29,11 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSizePerFile" value="10240000"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="resolveLazily" value="true"/>
+    </bean>
 
 	<!-- Hibernate SessionFactory -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
@@ -39,9 +44,9 @@
 			<list>
 				<value>org.fleamarket.domain.Event</value>
 				<value>org.fleamarket.domain.Vendor</value>
+				<value>org.fleamarket.domain.Product</value>
 				<value>org.fleamarket.domain.Customer</value>
 				<value>org.fleamarket.domain.Review</value>
-				<value>org.fleamarket.domain.Product</value>
 			</list>
 		</property>
 	</bean>
@@ -61,12 +66,15 @@
 	<bean id="vendorService" class="org.fleamarket.service.VendorService">
 		<constructor-arg name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
-	<bean id="customerService" class="org.fleamarket.service.CustomerService">
+	<bean id="productService" class="org.fleamarket.service.ProductService">
 		<constructor-arg name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="productService" class="org.fleamarket.service.ProductService">
+	 <bean id="eventController" class="org.fleamarket.controller.EventController">
+		<constructor-arg index="0" ref="eventService" />
+	</bean>
+	
+	<bean id="customerService" class="org.fleamarket.service.CustomerService">
 		<constructor-arg name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
@@ -83,7 +91,7 @@
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="properties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect
 				</prop>
 				<prop key="connection.pool_size">1</prop>

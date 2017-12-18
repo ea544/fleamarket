@@ -22,10 +22,15 @@ public class CustomerService {
 
 	@SuppressWarnings("rawtypes")
 	@Transactional
-	public Customer getCustomer(String email) {
-		Query query = sessionFactory.getCurrentSession().createQuery("FROM Customer c WHERE c.email = :email");
-		query.setParameter("email", email);
-		Customer customer = (Customer)query.getSingleResult();
+	public Customer getCustomer(int id) {
+//		//TODO: find/get
+//		Query query = sessionFactory.getCurrentSession().createQuery("FROM Customer c WHERE c.id = :id");
+//		query.setParameter("id", id);
+//		Customer customer = (Customer)query.getSingleResult();
+		Customer customer = sessionFactory.getCurrentSession().find(Customer.class, id);
+		// not recommended to do it like this customer.getReviews().size();
+		// when using query, you could use FETCH JOIN to retrieve associations
+		// Better even, if you config using JPA and fix the TX manager
 		return customer;
 	}
 	@Transactional

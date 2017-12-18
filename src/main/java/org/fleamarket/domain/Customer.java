@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -21,9 +22,9 @@ public class Customer {
 	@Embedded
 	private Address address;
 	
-	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Review> reviews;
-	//User username;
+
 	
 	public Customer() {	
 		reviews = new ArrayList<Review>();

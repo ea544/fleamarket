@@ -14,6 +14,10 @@
 			<tr><td>${product.price}</td></tr>
 			<tr><td>${product.quantity}</td></tr>
 			<tr><td>${product.description}</td></tr>
+			<tr><td>Product Photos</td></tr>
+			<c:forEach var="image" items="{product.photos}">
+				<tr><td><img src="${image}" alt="${product.productName }" height="200" width="200"/></td></tr>
+			</c:forEach>
 		</tbody>
 	</table>
 	<a href="../productForm/${product.id}">Click here to edit this product</a>

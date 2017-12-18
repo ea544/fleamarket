@@ -8,27 +8,24 @@
 <title>Flea Market :: Customer Details</title>
 </head>
 <body>
-<h1>Flea Market</h1>
+<h1>Flea Market </h1>
 	<table border="1">
 		<tbody>
-		<tr><td colspan="5">All Customers</td></tr>
+		<tr><td colspan="5">${customer.name} Reviews</td></tr>
 		<tr>
-		<td>Name</td>
-		<td>E-mail</td>
-		<td>Street</td>
-		<td>City</td>
-		<td>Action</td>
+		<td>1</td>
+		<td>2</td>
+	
+		
 		</tr>
-		<c:forEach var="customer" items="${customers}">
+		<c:forEach var="review" items="${customer.reviews}">
 			<tr>
-			<td>${customer.name}</td>
-			<td>${customer.email}</td>
-			<td>${customer.address.street}</td>
-			<td>${customer.address.city}</td>
-			<td><a href="customerDetails/${customer.id}">view customer details</a></td>
+				<td>${review.id}</td>
+				<td>${review.details}</td>
 			
+				
 			</tr>
-			</c:forEach>
+		</c:forEach>
 		</tbody>
 	</table>
 	

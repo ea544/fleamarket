@@ -1,5 +1,9 @@
 package org.fleamarket.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +18,8 @@ public class Product {
 	private String description;
 	private String quantity;
 	private String price;
+	@ElementCollection
+	private List<String> photos = new ArrayList<String>();
 	
 	public Product() {}
 	
@@ -24,9 +30,21 @@ public class Product {
 		this.quantity = quantity;
 		this.price = price;
 	}
+	
+	
+	
+	public List<String> getPhotos() {
+		return photos;
+	}
 
+	public void setPhotos(List<String> photos) {
+		this.photos = photos;
+	}
 
-
+	public void addPhoto(String file) {
+		photos.add(file);
+	}
+	
 	public String getProductName() {
 		return productName;
 	}

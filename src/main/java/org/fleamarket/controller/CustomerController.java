@@ -33,16 +33,17 @@ public class CustomerController {
         return "RegistrationConfirmation";
     } 
     
-    @RequestMapping(value = "/customerDeatils/{email}", method = RequestMethod.GET)
-	public String customerDetails(@PathVariable String email, ModelMap model) {
-		Customer customer = customerService.getCustomer(email);
+    @RequestMapping(value = "/customerDetails/{id}", method = RequestMethod.GET)
+	public String customerDetails(@PathVariable int id, ModelMap model) {
+		Customer customer = customerService.getCustomer(id);
 		model.addAttribute("customer", customer);
-		return "customerDeatils";
+	
+		return "customerDetails";
 	}
     
    
     @RequestMapping(value = "/customers", method = RequestMethod.GET)
-	public String customerDetails(ModelMap model) {
+	public String customerList(ModelMap model) {
     	model.addAttribute("customers",customerService.findAll());
 		return "customerList";
 	}
