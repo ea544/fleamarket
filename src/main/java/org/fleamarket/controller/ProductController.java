@@ -63,6 +63,9 @@ public class ProductController {
 		try {
 			id = product.getId();
 			productService.updateProduct(product);
+			//When we update product we don't go to update pictures too.
+			// so redirect to profile
+			//return "redirect:/products/productProfile/"+id;
 		}
 		catch(Exception e) {
 			System.out.println("The is zero so we are creating");

@@ -21,12 +21,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ProductService {
 	
-	private static String UPLOADS_FOLDER = "/home/sovello/Desktop/maharishi/ea/projectUploads";
+	private final String uploadsDir;
 	
 	private SessionFactory sessionFactory;
 
-	public ProductService(SessionFactory sessionFactory) {
+	public ProductService(SessionFactory sessionFactory, String uploadsDir) {
 		this.sessionFactory = sessionFactory;
+		this.uploadsDir = uploadsDir;
 	}
 
 	@Transactional
@@ -36,11 +37,12 @@ public class ProductService {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	@Transactional(readOnly=true, noRollbackFor=Exception.class)
+	@Transactional
 	public Product getProduct(Integer id) {
 		Query query = sessionFactory.getCurrentSession().createQuery("FROM Product p WHERE p.id = :id");
 		query.setParameter("id", id);
 		Product product = (Product)query.getSingleResult();
+		product.getPhotos();
 		return product;
 	}
 	
@@ -61,9 +63,10 @@ public class ProductService {
 	@Transactional
 	public void addPhoto(Integer id, MultipartFile file) throws FleaMarketException {
 		Product product = getProduct(id);
+		String filename = "";
 		try {
 			System.out.println("Uploading "+file.getOriginalFilename());
-			uploadPhoto(file);
+			filename = uploadPhoto(file);
 		}
 		catch(FleaMarketException e) {
 			throw new FleaMarketException(e.getMessage());
@@ -72,12 +75,8 @@ public class ProductService {
 			throw new FleaMarketException("There was a problem uploading the photo right now,"
 					+ "try again later");
 		}
-		try{
-			product.addPhoto(createNewFileNameString(file));
-		}
-		catch (FleaMarketException e){
-			throw new FleaMarketException(e.getMessage());
-		}
+		
+		product.addPhoto(filename);
 		sessionFactory.getCurrentSession().update(product);
 	}
 	
@@ -87,10 +86,10 @@ public class ProductService {
 		if( dot == -1)
 			throw new FleaMarketException("Invalid file extension");
 		String extension = filename.substring(dot);
-		String str = UUID.randomUUID().toString();
+		String str = UUID.randomUUID().toString().replace('-', '_');
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		long seconds = timestamp.getTime(); //seconds since epoch
-		String fileName =  String.format("%s-%d%s", str, seconds, extension);
+		String fileName =  String.format("%s_%d%s", str, seconds, extension);
 		System.out.println("New file name is: "+fileName);
 		return fileName;
 	}
@@ -101,7 +100,7 @@ public class ProductService {
 	 * @throws FleaMarketException
 	 * @throws IOException
 	 */
-	public void uploadPhoto(MultipartFile file) throws FleaMarketException, IOException {
+	public String uploadPhoto(MultipartFile file) throws FleaMarketException, IOException {
 		StringBuffer filename = new StringBuffer("");
 		try {
 			filename = filename.append(createNewFileNameString(file));
@@ -109,11 +108,12 @@ public class ProductService {
 		catch(FleaMarketException e){
 			throw new FleaMarketException(e.getMessage());
 		}
-		if (!file.getOriginalFilename().isEmpty()) {
+		//if (!file.getOriginalFilename().isEmpty()) {
+		if (!file.isEmpty()) {
 			//Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
 			BufferedOutputStream outputStream = new BufferedOutputStream(
 					new FileOutputStream(
-							new File(UPLOADS_FOLDER, filename.toString())));
+							new File(uploadsDir, filename.toString())));
 			outputStream.write(file.getBytes());
 	        outputStream.flush();
 	        outputStream.close();
@@ -121,5 +121,6 @@ public class ProductService {
 		else {
 			throw new FleaMarketException("Make sure the file name is valid.");
 		}
+		return filename.toString();
 	}
 }
