@@ -66,6 +66,10 @@
 		<constructor-arg name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="productService" class="org.fleamarket.service.ProductService">
+		<constructor-arg name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 	<!-- <bean id="reviewService" class="org.fleamarket.service.ReviewService">
 		<constructor-arg name="sessionFactory" ref="sessionFactory" />
 	</bean> -->

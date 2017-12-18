@@ -19,5 +19,6 @@
 		<a href="vendors">Click here to go to vendors</a>
 	
 	<a href="products">Click here to go to products</a>
+	<a href="${contextPath}/customers">All customer</a>
 </body>
 </html>
