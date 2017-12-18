@@ -29,6 +29,11 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSizePerFile" value="10240000"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="resolveLazily" value="true"/>
+    </bean>
 
 	<!-- Hibernate SessionFactory -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
@@ -39,6 +44,7 @@
 			<list>
 				<value>org.fleamarket.domain.Event</value>
 				<value>org.fleamarket.domain.Vendor</value>
+				<value>org.fleamarket.domain.Product</value>
 			</list>
 		</property>
 	</bean>
@@ -56,6 +62,9 @@
 	</bean>
 	
 	<bean id="vendorService" class="org.fleamarket.service.VendorService">
+		<constructor-arg name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="productService" class="org.fleamarket.service.ProductService">
 		<constructor-arg name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	

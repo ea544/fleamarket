@@ -12,5 +12,6 @@
 	<h1>Buenos dias a todos</h1>
 	<a href="<c:url value='event/eventList' />" >Click here to go to events</a>
 	<a href="vendors">Click here to go to vendors</a>
+	<a href="products">Click here to go to products</a>
 </body>
 </html>
