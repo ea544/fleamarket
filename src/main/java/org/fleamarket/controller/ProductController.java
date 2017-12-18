@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "/products")
@@ -57,8 +55,7 @@ public class ProductController {
 	 * @return
 	 */
 	@RequestMapping(value = "/productForm", method = RequestMethod.POST)
-	public String saveProduct( @ModelAttribute("product")Product product
-			){
+	public String saveProduct( @ModelAttribute("product")Product product){
 		Integer id = 0;
 		try {
 			id = product.getId();

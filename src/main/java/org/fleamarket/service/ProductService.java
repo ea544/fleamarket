@@ -4,18 +4,13 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.util.UUID;
-
-import javax.persistence.FetchType;
 
 import org.fleamarket.domain.Product;
 import org.fleamarket.exception.FleaMarketException;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
