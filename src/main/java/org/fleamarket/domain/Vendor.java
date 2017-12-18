@@ -14,6 +14,18 @@ public class Vendor {
 	private String lastname;
 	private String email;
 
+	public Vendor() {}
+	
+	
+	
+	public Vendor(String firstname, String lastname, String email) {
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+	}
+
+
+
 	public String getFirstname() {
 		return firstname;
 	}
@@ -24,6 +36,10 @@ public class Vendor {
 
 	public Integer getId() {
 		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getLastname() {
@@ -40,6 +56,18 @@ public class Vendor {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	@Override
+	public boolean equals(Object vendor) {
+		
+		if(vendor instanceof Vendor == false)
+			return false;
+		
+		Vendor v = (Vendor)vendor;
+		
+		return v.id == this.id;
+		
 	}
 
 }
