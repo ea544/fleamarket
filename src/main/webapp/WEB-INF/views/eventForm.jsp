@@ -6,8 +6,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:url var="eventFormAction" value="/event/eventForm" ></c:url>
-	<form:form method="POST" action="${eventFormAction}" modelAttribute="event">
+	<c:url var="eventFormAction" value="/event/eventForm"></c:url>
+	<form:form method="POST" action="${eventFormAction}"
+		modelAttribute="event">
 		<table>
 
 			<tr>
@@ -51,7 +52,7 @@
 				<td>State:</td>
 				<td><form:input type="text" path="address.state" /></td>
 			</tr>
-			
+
 			<tr>
 				<td>Zip:</td>
 				<td><form:input type="text" path="address.zip" /></td>
@@ -67,8 +68,17 @@
 				<td><form:input type="text" path="review" /></td>
 			</tr>
 
-<form:hidden path="eventId"/>
+			<tr>
+				<td>Organizer:</td>
+				<td><form:select path="organizer.id">
+						<c:forEach var="org" items="${organizers}">
+							<option value="${org.id}">${org.firstname} ${org.lastname}</option>
+						</c:forEach>
+					</form:select></td>
 
+			</tr>
+		
+			<form:hidden path="eventId" />
 		</table>
 		<input type="submit" value="Submit" />
 	</form:form>
