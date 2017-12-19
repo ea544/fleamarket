@@ -48,7 +48,7 @@
 		<!-- OR mapping files. -->
 		<property name="annotatedClasses">
 			<list>
-				<value>org.fleamarket.domain.Event</value>
+				<value>org.fleamarket.event.model.Event</value>
 				<value>org.fleamarket.domain.Vendor</value>
 				<value>org.fleamarket.domain.Product</value>
 				<value>org.fleamarket.domain.Customer</value>
