@@ -92,8 +92,15 @@ public class EventService implements IEventService {
 	}
 	
 	//vendors
-
+	
 	/*@Transactional
+	public List<Vendor> getEventById() {
+		//Query<Vendor> query = sessionFactory.getCurrentSession().createQuery("from Vendor", Vendor.class);
+		List<Vendor> query = eventRepository.findAllVendors();
+		return query;
+	}
+
+	@Transactional
 	public void addVendor(Integer idEvent, Integer idVendor) {	
 		Event event = getEventById(idEvent);
 		event.addVendor(getVendorById(idVendor));
@@ -101,7 +108,8 @@ public class EventService implements IEventService {
 
 		eventRepository.save(event);
 	}
-
+	
+	
 	@Transactional
 	public Vendor getVendorById(Integer id) {
 		//Query query = sessionFactory.getCurrentSession().createQuery("FROM Vendor p WHERE p.id = :id");
@@ -112,8 +120,8 @@ public class EventService implements IEventService {
 		//Vendor vendor = (Vendor) query.getSingleResult();
 		return (Vendor) vendor;
 	}
-
-	@Transactional
+	
+	/*@Transactional
 	public List<Vendor> getVendors() {
 		//Query<Vendor> query = sessionFactory.getCurrentSession().createQuery("from Vendor", Vendor.class);
 		List<Vendor> query = eventRepository.findAllVendors();
@@ -162,21 +170,7 @@ public class EventService implements IEventService {
 		Query<Vendor> query = sessionFactory.getCurrentSession().createQuery("from Vendor", Vendor.class);
 		return (Vendor) query;
 	}
-
-	/*@Transactional
-	public List<Vendor> getOrganizersByEventId(Integer id) {
-		Query query = sessionFactory.getCurrentSession().createQuery("FROM Event p WHERE p.eventId = :id");
-		query.setParameter("id", id);
-		Event event = (Event) query.getSingleResult();
-		return event.getVendors();
-	}
-
-	@Transactional
-	public void deleteOrganizer(Integer id, Integer idVendor) {
-		Event event = getEventById(id);
-		event.getVendors().remove(getVendorById(idVendor));
-		sessionFactory.getCurrentSession().update(event);
-	}*/
+*/
 	
 
 }

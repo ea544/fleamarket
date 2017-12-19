@@ -19,6 +19,8 @@ public interface EventRepository extends JpaRepository<Event, Integer>{
 	
 	void removeByEventId(int eventId);
 	
+	List<Vendor> getVendorByEventId(int eventId);
+	
 	/*
 	 * maybe you don't need this because it doesn't define get* methods List<Event>
 	 * getEventById(Integer id);
