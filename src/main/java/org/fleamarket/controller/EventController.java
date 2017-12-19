@@ -51,6 +51,7 @@ public class EventController {
 	@RequestMapping(value = "/event/eventForm", method = RequestMethod.POST)
 	public String createEvent(@ModelAttribute("event") Event event, ModelMap model) {
 
+		System.out.println("event form ");
 		if (event.getEventId() == 0) {
 
 			eventService.createEvent(event);
@@ -69,6 +70,7 @@ public class EventController {
 	@RequestMapping(value = "/event/eventForm", method = RequestMethod.GET)
 	public String eventForm(ModelMap model) {
 		Event event = new Event();
+		model.addAttribute("organizers", eventService.getVendors());
 		model.addAttribute("event", event);
 		model.addAttribute("edit", false);
 		return "eventForm";
@@ -81,6 +83,7 @@ public class EventController {
 
 		System.out.println("id : " + id);
 		model.addAttribute("event", eventService.getEventById(id));
+		model.addAttribute("organizers", eventService.getVendors());
 		// eventService.editEvent(event);
 		return "eventForm";
 	}
@@ -179,5 +182,30 @@ public class EventController {
 
 		return "eventVendors";
 	}
+	
+	///Organizers
+	
+	//Show all organizers re use getAllVendors()
+	
+	@RequestMapping(value = "/event/eventAddOrganizer/{id}", method = RequestMethod.GET)
+	public String getAllOrganizers(@PathVariable("id") int id, Model model) {
+
+		System.out.println("Vendors List");
+
+		model.addAttribute("vendors", eventService.getVendors());
+
+		/* return "redirect:/events"; */
+
+		return "eventVendors";
+
+	}
+	
+	//add organizer
+	
+	
+	
+	
+
+	
 
 }

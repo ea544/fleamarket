@@ -26,4 +26,8 @@ public interface IEventService {
 	public List<Vendor> getVendors();
 
 	public List<Vendor> getVendorsByEventId(Integer id);
+	
+	public Vendor getOrganizerById(Integer id);
+	
+	public Vendor getOrganizer();
 }

@@ -11,6 +11,10 @@
 	<h1>List of vendors so far :)</h1>
 	<c:url var="addVendorFunction" value="/event/eventAddVendor" ></c:url>
 	<c:url var="deleteVendorFunction" value="/event/eventDeleteVendor" ></c:url>
+	<c:url var="eventsFunction" value="/event/eventList" ></c:url>
+	
+	<a href="${eventsFunction}" >Back</a>
+	
 	<table>
 		<tbody>
 			<tr>
@@ -34,7 +38,6 @@
 		</tbody>
 
 	</table>
-
 
 </body>
 </html>
