@@ -14,6 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+
+import org.springframework.lang.NonNull;
 
 @Entity
 public class Event {
@@ -23,13 +27,15 @@ public class Event {
 	private int eventId;
 
 	private Date date;
-
+	@NotEmpty
 	private String title;
+	@NotEmpty
 	private String description;
 	private double organizingCostEstimate;
 	private double subscriptionFee;
 	private String review;
-
+	
+	@Valid
 	@Embedded
 	private Address address;
 
@@ -37,7 +43,7 @@ public class Event {
 	 @OneToMany(fetch=FetchType.EAGER)
 	 @JoinColumn(name = "eventId")
 	private List<Vendor> vendors = new ArrayList<Vendor>();
-
+	 
 	@OneToOne
 	@JoinColumn(name = "id")
 	private Vendor organizer;
@@ -70,11 +76,6 @@ public class Event {
 		this.organizer = organizer;
 		this.address = address;
 	}
-	
-	public void addVendor(Vendor vendor) {
-		this.vendors.add(vendor);
-	}
-	
 
 	public String getTitle() {
 		return title;
@@ -142,6 +143,11 @@ public class Event {
 
 	public List<Vendor> getVendors() {
 		return vendors;
+	}
+	
+	
+	public void addVendor(Vendor vendor) {
+		this.vendors.add(vendor);
 	}
 
 	public void setVendors(List<Vendor> vendors) {

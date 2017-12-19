@@ -18,16 +18,18 @@ public interface IEventService {
 	public Event getEventById(int id);
 
 	public void addVendor(Integer id, Integer idVendor);
-
-	public void deleteVendor(Integer id, Integer idVendor);
-
+	
 	public Vendor getVendorById(Integer id);
-
+	
 	public List<Vendor> getVendors();
-
+	
 	public List<Vendor> getVendorsByEventId(Integer id);
+
+	public void deleteVendor(Integer id, Integer idVendor);	
 	
 	public Vendor getOrganizerById(Integer id);
 	
 	public Vendor getOrganizer();
+	
+	
 }

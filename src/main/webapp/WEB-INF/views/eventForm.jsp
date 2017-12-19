@@ -19,7 +19,7 @@
 			<tr>
 				<td>Description:</td>
 				<td><form:input type="text" path="description" /></td>
-			</tr>
+			</tr>			
 
 			<tr>
 				<td>Cost:</td>
@@ -30,13 +30,6 @@
 				<td>Fee:</td>
 				<td><form:input type="text" path="subscriptionFee" /></td>
 			</tr>
-
-			<tr>
-				<td>Organizer:</td>
-				<td><form:input type="text" path="organizer.firstname" /></td>
-			</tr>
-
-			<h2>Address Information:</h2>
 
 			<tr>
 				<td>Street:</td>
@@ -72,12 +65,13 @@
 				<td>Organizer:</td>
 				<td><form:select path="organizer.id">
 						<c:forEach var="org" items="${organizers}">
-							<option value="${org.id}">${org.firstname} ${org.lastname}</option>
+							<option value="${org.id}">${org.firstname}
+								${org.lastname}</option>
 						</c:forEach>
 					</form:select></td>
 
 			</tr>
-		
+
 			<form:hidden path="eventId" />
 		</table>
 		<input type="submit" value="Submit" />

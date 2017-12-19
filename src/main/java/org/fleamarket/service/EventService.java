@@ -43,43 +43,25 @@ public class EventService implements IEventService {
 		sessionFactory.getCurrentSession().update(event);
 	}
 
-	public void comment(String comments) {
-
-	}
-
 	@Transactional
 	public Event getEventById(int id) {
-
-		System.out.println("Id in service " + id);
-
 		Query query = sessionFactory.getCurrentSession().createQuery("FROM Event p WHERE p.eventId = :id");
 		query.setParameter("id", id);
 		Event event = (Event) query.getSingleResult();
 		return event;
 	}
-	///////// vendors
+	
+	//vendors
 
 	@Transactional
-	public void addVendor(Integer idEvent, Integer idVendor) {
-		
-		System.out.println("addvendor");
-		
+	public void addVendor(Integer idEvent, Integer idVendor) {	
 		Event event = getEventById(idEvent);
-		// Vendor vendor = getVendorById(idVendor);
-		// sessionFactory.getCurrentSession().persist(vendor);
 		event.addVendor(getVendorById(idVendor));
-
 		sessionFactory.getCurrentSession().update(event);
-		
-		System.out.println(getEventById(idEvent).getVendors().size() + " : size");
-
 	}
 
 	@Transactional
 	public Vendor getVendorById(Integer id) {
-
-		System.out.println("IdVendor in service " + id);
-
 		Query query = sessionFactory.getCurrentSession().createQuery("FROM Vendor p WHERE p.id = :id");
 		query.setParameter("id", id);
 		Vendor vendor = (Vendor) query.getSingleResult();
@@ -94,54 +76,30 @@ public class EventService implements IEventService {
 
 	@Transactional
 	public List<Vendor> getVendorsByEventId(Integer id) {
-
-		System.out.println("getVendorsByEventId in service " + id);
-
 		Query query = sessionFactory.getCurrentSession().createQuery("FROM Event p WHERE p.eventId = :id");
 		query.setParameter("id", id);
-
 		Event event = (Event) query.getSingleResult();
-
 		return event.getVendors();
-
 	}
 
 	@Transactional
 	public void deleteVendor(Integer id, Integer idVendor) {
-		// TODO Auto-generated method stub
-
 		Event event = getEventById(id);
-		// Vendor vendor = getVendorById(idVendor);
-		// sessionFactory.getCurrentSession().persist(vendor);
 		event.getVendors().remove(getVendorById(idVendor));
-
 		sessionFactory.getCurrentSession().update(event);
 	}
 	
 	//organizers
 
 	@Transactional
-	public void addOrganizer(Integer idEvent, Integer idVendor) {
-		
-		System.out.println("add organizer");
-		
+	public void addOrganizer(Integer idEvent, Integer idVendor) {		
 		Event event = getEventById(idEvent);
-		 //Vendor vendor = getOrganizerById(idVendor);
-		// sessionFactory.getCurrentSession().persist(vendor);
-		//event.addVendor(getOrganizerById(idVendor));
-
 		sessionFactory.getCurrentSession().update(event);
-		
-		System.out.println(getEventById(idEvent).getVendors().size() + " : size");
-
 	}
 	
 
 	@Transactional
 	public Vendor getOrganizerById(Integer id) {
-
-		System.out.println("IdVendor in service " + id);
-
 		Query query = sessionFactory.getCurrentSession().createQuery("FROM Vendor p WHERE p.id = :id");
 		query.setParameter("id", id);
 		Vendor vendor = (Vendor) query.getSingleResult();
@@ -154,31 +112,20 @@ public class EventService implements IEventService {
 		return (Vendor) query;
 	}
 
-	@Transactional
+	/*@Transactional
 	public List<Vendor> getOrganizersByEventId(Integer id) {
-
-		System.out.println("getVendorsByEventId in service " + id);
-
 		Query query = sessionFactory.getCurrentSession().createQuery("FROM Event p WHERE p.eventId = :id");
 		query.setParameter("id", id);
-
 		Event event = (Event) query.getSingleResult();
-
 		return event.getVendors();
-
 	}
 
 	@Transactional
 	public void deleteOrganizer(Integer id, Integer idVendor) {
-		// TODO Auto-generated method stub
-
 		Event event = getEventById(id);
-		// Vendor vendor = getVendorById(idVendor);
-		// sessionFactory.getCurrentSession().persist(vendor);
 		event.getVendors().remove(getVendorById(idVendor));
-
 		sessionFactory.getCurrentSession().update(event);
-	}
+	}*/
 	
 
 }
