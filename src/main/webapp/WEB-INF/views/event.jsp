@@ -13,6 +13,7 @@
 	<c:url var="getEventFunction" value="/event/getForm" ></c:url>
 	<c:url var="addVendorFunction" value="/event/eventAddVendor" ></c:url>
 	<c:url var="addEventFunction" value="/event/eventForm" ></c:url>
+	<c:url var="addOrganizerFunction" value="/event/eventAddOrganizer" ></c:url>
 	<table>
 		<tbody>
 			<tr>
@@ -37,7 +38,7 @@
 					<td>${event.organizingCostEstimate}</td>
 					<td>${event.subscriptionFee}</td>
 					<td>${event.review}</td>
-					<td>${event.organizer.firstname}</td>
+					<td>${event.organizer.id}</td>
 					<td>
 					<c:forEach var="vendor" items="${event.vendors}">
 					 - ${vendor.firstname}
@@ -45,7 +46,7 @@
 					</td>
 					<td> <a href="${deleteEventFunction}/${event.eventId}">Delete</a> </td>
 					<td> <a href="${getEventFunction}/${event.eventId}">Edit</a></td>
-					<td> <a href="${addVendorFunction}/${event.eventId}">Add Vendors</a> </td>
+					<td> <a href="${addVendorFunction}/${event.eventId}">Vendors</a> </td>
 				</tr>
 			</c:forEach>
 		<tbody>

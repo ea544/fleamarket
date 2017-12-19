@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -32,11 +33,12 @@ public class Event {
 	@Embedded
 	private Address address;
 
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	/*@JoinColumn(name = "id")*/
+	
+	 @OneToMany(fetch=FetchType.EAGER)
+	 @JoinColumn(name = "eventId")
 	private List<Vendor> vendors = new ArrayList<Vendor>();
 
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "id")
 	private Vendor organizer;
 
@@ -72,6 +74,7 @@ public class Event {
 	public void addVendor(Vendor vendor) {
 		this.vendors.add(vendor);
 	}
+	
 
 	public String getTitle() {
 		return title;

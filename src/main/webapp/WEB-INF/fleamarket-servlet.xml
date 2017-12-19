@@ -58,6 +58,15 @@
 			</list>
 		</property>
 	</bean>
+
+	<!-- the datasource -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost/fleamarket" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
 	
 	<bean id="eventService" class="org.fleamarket.service.EventService">
 		<constructor-arg name="sessionFactory" ref="sessionFactory" />
