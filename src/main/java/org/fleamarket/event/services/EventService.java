@@ -6,8 +6,10 @@ import org.fleamarket.event.dao.EventRepository;
 import org.fleamarket.event.model.Event;
 import org.fleamarket.vendor.model.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service("eventService")
 public class EventService implements IEventService {
 
 	@Autowired
@@ -32,34 +34,37 @@ public class EventService implements IEventService {
 		//essionFactory.getCurrentSession().persist(event);
 		eventRepository.save(event);
 	}
-
-	@Override
-	@Transactional
-	public void deleteEvent(int id) {
-		Event event = getEventById(id);
-		if (event != null) {
-			//sessionFactory.getCurrentSession().delete(event);
-			eventRepository.delete(event);
-		}
-	}
-
+	
 	@Override
 	@Transactional
 	public void editEvent(Event event) {
 		//sessionFactory.getCurrentSession().update(event);
 		eventRepository.save(event);
 	}
+	
+	
+
+	@Override
+	@Transactional
+	public void deleteEvent(int id) {
+		//Event event = getEventById(id);
+		//if (event != null) {
+			//sessionFactory.getCurrentSession().delete(event);
+			//eventRepository.delete(event);
+			eventRepository.removeByEventId(id);
+		}
+	//}
 
 	@Override
 	@Transactional
 	public Event getEventById(int id) {
 		//Query query = sessionFactory.getCurrentSession().createQuery("FROM Event p WHERE p.eventId = :id");
-		List<Event> event = eventRepository.findEventById(id);
+		//eventRepository.findEventByEventId(id);
 		
 		//query.setParameter("id", id);
 		//Event event = (Event) query.getSingleResult();
 		//return event;
-		return (Event) event;
+		return eventRepository.getEventByEventId(id);
 	}
 
 	@Override

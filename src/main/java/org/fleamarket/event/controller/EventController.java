@@ -6,6 +6,7 @@ import org.fleamarket.event.model.Event;
 import org.fleamarket.event.services.IEventService;
 import org.fleamarket.vendor.model.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,17 +14,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-//@Controller
-/* @RequestMapping(value = "/events") */
+@Controller
+/*@RequestMapping(value = "/events") */
 
 public class EventController {
 
 	@Autowired
 	IEventService eventService;
 
-	public EventController(IEventService eventService) {
+	/*public EventController(IEventService eventService) {
 		this.eventService = eventService;
-	}
+	}*/
 
 	// Show all events
 	@RequestMapping(value = "/event/eventList", method = RequestMethod.GET)
@@ -65,7 +66,6 @@ public class EventController {
 	}
 
 	// delete event
-
 	@RequestMapping(value = "/event/deleteEvent/{id}", method = RequestMethod.GET)
 	public String deleteEvent(@PathVariable("id") int id, Model model) {
 		eventService.deleteEvent(id);

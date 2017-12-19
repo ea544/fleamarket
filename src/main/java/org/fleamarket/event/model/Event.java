@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,7 +17,7 @@ import javax.validation.constraints.NotEmpty;
 
 import org.fleamarket.vendor.model.Vendor;
 
-//@Entity
+@Entity
 public class Event {
 
 	@Id
