@@ -11,7 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.fleamarket.event.domain.Address;
+import org.fleamarket.event.model.Address;
 
 @Entity
 public class Customer {

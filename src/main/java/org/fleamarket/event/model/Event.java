@@ -1,4 +1,4 @@
-package org.fleamarket.event.domain;
+package org.fleamarket.event.model;
 
 import java.sql.Date;
 import java.util.ArrayList;
