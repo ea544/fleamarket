@@ -2,14 +2,11 @@ package org.fleamarket.service;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.fleamarket.domain.Customer;
 import org.fleamarket.user.dao.CustomerRepository;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 @Service
 public class CustomerService {
 	@Autowired
@@ -25,9 +22,9 @@ public class CustomerService {
 		//sessionFactory.getCurrentSession().persist(cust);
 	}
 	
-	public void updateCustomer(Customer cust) {
-		customerRepository.updateCustomer(cust);
-	}
+	// public void updateCustomer(Customer cust) {
+	// customerRepository.updateCustomer(cust);
+	// }
 
 	
 	public Customer getCustomer(int id) {

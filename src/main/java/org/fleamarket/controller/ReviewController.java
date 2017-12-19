@@ -4,21 +4,19 @@ package org.fleamarket.controller;
 
 import java.security.Principal;
 
-import org.fleamarket.domain.Address;
 import org.fleamarket.domain.Customer;
 import org.fleamarket.domain.Review;
+import org.fleamarket.event.model.Address;
 import org.fleamarket.service.ReviewService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Controller
+//@Controller
 public class ReviewController {
-	@Autowired
+	// @Autowired
     private ReviewService reviewService;
 	
 	@RequestMapping(value = "/addReview", method = RequestMethod.GET)

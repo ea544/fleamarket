@@ -1,4 +1,4 @@
-package org.fleamarket.domain;
+package org.fleamarket.product.model;
 
 import java.util.ArrayList;
 import java.util.List;

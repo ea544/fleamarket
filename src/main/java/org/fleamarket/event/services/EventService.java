@@ -2,11 +2,9 @@ package org.fleamarket.event.services;
 
 import java.util.List;
 
-import org.fleamarket.domain.Vendor;
 import org.fleamarket.event.dao.EventRepository;
 import org.fleamarket.event.model.Event;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
+import org.fleamarket.vendor.model.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +18,7 @@ public class EventService implements IEventService {
 		this.sessionFactory = sessionFactory;
 	}*/
 
+	@Override
 	@Transactional
 	public List<Event> getEvents() {
 		//Query<Event> query = sessionFactory.getCurrentSession().createQuery("from Event", Event.class);
@@ -27,12 +26,14 @@ public class EventService implements IEventService {
 		return query;
 	}
 
+	@Override
 	@Transactional
 	public void createEvent(Event event) {
 		//essionFactory.getCurrentSession().persist(event);
 		eventRepository.save(event);
 	}
 
+	@Override
 	@Transactional
 	public void deleteEvent(int id) {
 		Event event = getEventById(id);
@@ -42,12 +43,14 @@ public class EventService implements IEventService {
 		}
 	}
 
+	@Override
 	@Transactional
 	public void editEvent(Event event) {
 		//sessionFactory.getCurrentSession().update(event);
 		eventRepository.save(event);
 	}
 
+	@Override
 	@Transactional
 	public Event getEventById(int id) {
 		//Query query = sessionFactory.getCurrentSession().createQuery("FROM Event p WHERE p.eventId = :id");
@@ -57,6 +60,30 @@ public class EventService implements IEventService {
 		//Event event = (Event) query.getSingleResult();
 		//return event;
 		return (Event) event;
+	}
+
+	@Override
+	public List<Vendor> getVendorsByEventId(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Vendor> getVendors() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addVendor(int eventId, int vendorId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void deleteVendor(int eventId, int vendorId) {
+		// TODO Auto-generated method stub
+
 	}
 	
 	//vendors

@@ -20,8 +20,10 @@
 		   http://www.springframework.org/schema/beans 
 		   http://www.springframework.org/schema/beans/spring-beans.xsd">
 		   
-	<context:component-scan base-package="org.fleamarket" />
-	<context:component-scan base-package="org.fleamarket.user.dao" />
+	<context:component-scan base-package="org.fleamarket.*" />
+	<context:component-scan base-package="org.fleamarket.user.model" />
+	<context:component-scan base-package="org.fleamarket.vendor.model" />
+	<context:component-scan base-package="org.fleamarket.product.model" />
 	<context:annotation-config />
 	<mvc:default-servlet-handler/>
 	<mvc:annotation-driven />
@@ -40,14 +42,18 @@
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="resolveLazily" value="true"/>
     </bean>
-
-	<!-- Hibernate SessionFactory -->
+	<bean id="productService" class="org.fleamarket.product.service.ProductServiceImpl">
+		<!-- <constructor-arg name="sessionFactory" ref="sessionFactory" /> -->
+		<constructor-arg value="/home/sovello/Desktop/maharishi/ea/uploadsDir/product_photos/" />
+	</bean>
+	<!--
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="hibernateProperties" ref="hibernateProperties" />
-		<!-- OR mapping files. -->
 		<property name="annotatedClasses">
 			<list>
+				<value>org.fleamarket.domain.Event</value>
+				<value>org.fleamarket.vendor.model.Vendor</value>
 				<value>org.fleamarket.event.model.Event</value>
 				<value>org.fleamarket.domain.Vendor</value>
 				<value>org.fleamarket.domain.Product</value>
@@ -58,8 +64,6 @@
 			</list>
 		</property>
 	</bean>
-
-	<!-- the datasource -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -72,9 +76,6 @@
 		<constructor-arg name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="vendorService" class="org.fleamarket.service.VendorService">
-		<constructor-arg name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	<bean id="productService" class="org.fleamarket.service.ProductService">
 		<constructor-arg name="sessionFactory" ref="sessionFactory" />
 		<constructor-arg name="uploadsDir" value="/home/sovello/Desktop/maharishi/ea/uploadsDir/product_photos/" />
@@ -83,22 +84,12 @@
 	 <bean id="eventController" class="org.fleamarket.controller.EventController">
 		<constructor-arg index="0" ref="eventService" />
 	</bean>
-	
-	
+
 	
 	<bean id="reviewService" class="org.fleamarket.service.ReviewService">
 		<constructor-arg name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
-	<!-- <bean id="reviewService" class="org.fleamarket.service.ReviewService">
-		<constructor-arg name="sessionFactory" ref="sessionFactory" />
-	</bean> -->
-	
-	<!-- <bean id="vendorController" class="org.fleamarket.controller.VendorController">
-		<constructor-arg index="0" ref="vendorService" />
-	</bean> -->
-
-	<!-- hibernate Properties -->
+		
 	<bean id="hibernateProperties"
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="properties">
@@ -110,6 +101,14 @@
 				<prop key="hibernate.show_sql">true</prop>
 			</props>
 		</property>
+	</bean>
+	-->
+	<!-- the datasource -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost/fleamarket" />
+		<property name="username" value="root" />
+		<property name="password" value="sovello" />
 	</bean>
 	
 	<!-- Configure the entity manager factory bean -->
@@ -123,14 +122,21 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.id.new_generator_mappings">false</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
             </props>
         </property>
     </bean>
 	<jpa:repositories base-package="org.fleamarket.user.dao"/>
-	<tx:annotation-driven transaction-manager="transactionManager" />
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	<jpa:repositories base-package="org.fleamarket.vendor.dao"/>
 	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+          p:entityManagerFactory-ref="entityManagerFactory" />
+	
+    <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="showSql" value="true"/>
+        <property name="generateDdl" value="true"/>
+        <property name="database" value="MYSQL"/>
+    </bean>
 </beans>

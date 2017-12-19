@@ -1,7 +1,7 @@
 package org.fleamarket.controller;
 
 import org.fleamarket.domain.Customer;
-import org.fleamarket.domain.Product;
+import org.fleamarket.product.model.Product;
 import org.fleamarket.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

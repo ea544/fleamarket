@@ -1,7 +1,9 @@
-package org.fleamarket.controller;
+package org.fleamarket.vendor.controller;
 
-import org.fleamarket.domain.Vendor;
-import org.fleamarket.service.VendorService;
+import java.util.Optional;
+
+import org.fleamarket.vendor.model.Vendor;
+import org.fleamarket.vendor.service.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -34,20 +36,8 @@ public class VendorController {
 	 */
 	@RequestMapping(value = "/vendorForm", method = RequestMethod.POST)
 	public String saveVendor(@ModelAttribute("vendor") Vendor vendor) {
-		Integer id = 0;
-		try {
-			id = vendor.getId();
-			vendorService.updateVendor(vendor);
-			//When we update product we don't go to update pictures too.
-			// so redirect to profile
-			//return "redirect:/products/productProfile/"+id;
-		}
-		catch(Exception e) {
-			System.out.println("The id is zero so we are creating");
-			e.printStackTrace();
-			id = vendorService.createVendor(vendor);
-		}
-		return "redirect:/vendors/vendorProfile/"+id;
+		Vendor ven = vendorService.saveVendor(vendor);
+		return "redirect:/vendors/vendorProfile/" + ven.getId();
 	}
 
 	/**
@@ -55,8 +45,10 @@ public class VendorController {
 	 */
 	@RequestMapping(value = "/vendorProfile/{id}", method = RequestMethod.GET)
 	public String vendorProfile(@PathVariable Integer id, ModelMap model) {
-		Vendor vendor = vendorService.getVendor(id);
-		model.addAttribute("vendor", vendor);
+		Optional<Vendor> vendor = vendorService.findVendorById(id);
+		if (vendor.isPresent()) {
+			model.addAttribute("vendor", vendor);
+		}
 		return "vendorProfile";
 	}
 	
@@ -67,8 +59,10 @@ public class VendorController {
 	 */
 	@RequestMapping(value="/vendorForm/{id}", method = RequestMethod.GET)
 	public String vendorEditForm(@PathVariable Integer id, ModelMap model) {
-		Vendor vendor = vendorService.getVendor(id);
-		model.addAttribute("vendor", vendor);
+		Optional<Vendor> vendor = vendorService.findVendorById(id);
+		if (vendor.isPresent()) {
+			model.addAttribute("vendor", vendor);
+		}
 		model.addAttribute("edit", true);
 		return "vendorForm";
 	}
