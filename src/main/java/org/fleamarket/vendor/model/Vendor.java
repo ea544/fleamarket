@@ -1,8 +1,13 @@
 package org.fleamarket.vendor.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.fleamarket.event.model.Event;
 
 @Entity
 public class Vendor {
@@ -13,6 +18,17 @@ public class Vendor {
 	private String firstname;
 	private String lastname;
 	private String email;
+
+	@OneToMany(mappedBy = "vendors")
+	private List<Event> events;
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
 
 	public Vendor() {}
 	

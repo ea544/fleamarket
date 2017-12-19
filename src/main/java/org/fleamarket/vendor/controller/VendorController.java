@@ -47,7 +47,7 @@ public class VendorController {
 	public String vendorProfile(@PathVariable Integer id, ModelMap model) {
 		Optional<Vendor> vendor = vendorService.findVendorById(id);
 		if (vendor.isPresent()) {
-			model.addAttribute("vendor", vendor);
+			model.addAttribute("vendor", vendor.get());
 		}
 		return "vendorProfile";
 	}

@@ -55,19 +55,8 @@ public class ProductController {
 	 */
 	@RequestMapping(value = "/productForm", method = RequestMethod.POST)
 	public String saveProduct( @ModelAttribute("product")Product product){
-		Integer id = 0;
-		try {
-			id = product.getId();
-			productService.updateProduct(product);
-			//When we update product we don't go to update pictures too.
-			// so redirect to profile
-			//return "redirect:/products/productProfile/"+id;
-		}
-		catch(Exception e) {
-			System.out.println("The is zero so we are creating a product");
-			Product prod = productService.saveProduct(product);
-			id = prod.getId();
-		}
+		Product prod = productService.saveProduct(product);
+		Integer id = prod.getId();
 		return "redirect:/products/photosForm/" + id;
 	}
 	
