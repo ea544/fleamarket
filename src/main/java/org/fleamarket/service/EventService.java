@@ -2,8 +2,8 @@ package org.fleamarket.service;
 
 import java.util.List;
 
-import org.fleamarket.domain.Event;
 import org.fleamarket.domain.Vendor;
+import org.fleamarket.event.domain.Event;
 import org.fleamarket.interfaces.IEventService;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;

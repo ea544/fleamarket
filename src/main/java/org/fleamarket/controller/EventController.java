@@ -2,8 +2,8 @@ package org.fleamarket.controller;
 
 import java.util.List;
 
-import org.fleamarket.domain.Event;
 import org.fleamarket.domain.Vendor;
+import org.fleamarket.event.domain.Event;
 import org.fleamarket.interfaces.IEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

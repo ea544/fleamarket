@@ -1,4 +1,4 @@
-package org.fleamarket.domain;
+package org.fleamarket.event.domain;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
+import org.fleamarket.domain.Vendor;
 import org.springframework.lang.NonNull;
 
 @Entity

@@ -2,8 +2,8 @@ package org.fleamarket.interfaces;
 
 import java.util.List;
 
-import org.fleamarket.domain.Event;
 import org.fleamarket.domain.Vendor;
+import org.fleamarket.event.domain.Event;
 
 public interface IEventService {
 
