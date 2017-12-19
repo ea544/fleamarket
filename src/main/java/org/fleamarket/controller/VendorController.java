@@ -17,10 +17,6 @@ public class VendorController {
 	@Autowired
 	VendorService vendorService;
 
-	// public VendorController(VendorService vendorService) {
-	// this.vendorService = vendorService;
-	// }
-
 	/**
 	 * This is the home page for vendors
 	 */

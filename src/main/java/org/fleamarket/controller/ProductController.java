@@ -65,7 +65,7 @@ public class ProductController {
 			//return "redirect:/products/productProfile/"+id;
 		}
 		catch(Exception e) {
-			System.out.println("The is zero so we are creating");
+			System.out.println("The is zero so we are creating a product");
 			id = productService.createProduct(product);
 		}
 		return "redirect:/products/photosForm/"+id;
