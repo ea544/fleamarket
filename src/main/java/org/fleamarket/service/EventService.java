@@ -117,5 +117,68 @@ public class EventService implements IEventService {
 
 		sessionFactory.getCurrentSession().update(event);
 	}
+	
+	//organizers
+
+	@Transactional
+	public void addOrganizer(Integer idEvent, Integer idVendor) {
+		
+		System.out.println("add organizer");
+		
+		Event event = getEventById(idEvent);
+		 //Vendor vendor = getOrganizerById(idVendor);
+		// sessionFactory.getCurrentSession().persist(vendor);
+		//event.addVendor(getOrganizerById(idVendor));
+
+		sessionFactory.getCurrentSession().update(event);
+		
+		System.out.println(getEventById(idEvent).getVendors().size() + " : size");
+
+	}
+	
+
+	@Transactional
+	public Vendor getOrganizerById(Integer id) {
+
+		System.out.println("IdVendor in service " + id);
+
+		Query query = sessionFactory.getCurrentSession().createQuery("FROM Vendor p WHERE p.id = :id");
+		query.setParameter("id", id);
+		Vendor vendor = (Vendor) query.getSingleResult();
+		return vendor;
+	}
+
+	@Transactional
+	public Vendor getOrganizer() {
+		Query<Vendor> query = sessionFactory.getCurrentSession().createQuery("from Vendor", Vendor.class);
+		return (Vendor) query;
+	}
+
+	@Transactional
+	public List<Vendor> getOrganizersByEventId(Integer id) {
+
+		System.out.println("getVendorsByEventId in service " + id);
+
+		Query query = sessionFactory.getCurrentSession().createQuery("FROM Event p WHERE p.eventId = :id");
+		query.setParameter("id", id);
+
+		Event event = (Event) query.getSingleResult();
+
+		return event.getVendors();
+
+	}
+
+	@Transactional
+	public void deleteOrganizer(Integer id, Integer idVendor) {
+		// TODO Auto-generated method stub
+
+		Event event = getEventById(id);
+		// Vendor vendor = getVendorById(idVendor);
+		// sessionFactory.getCurrentSession().persist(vendor);
+		event.getVendors().remove(getVendorById(idVendor));
+
+		sessionFactory.getCurrentSession().update(event);
+	}
+	
 
 }

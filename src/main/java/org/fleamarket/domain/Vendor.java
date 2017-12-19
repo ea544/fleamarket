@@ -69,5 +69,10 @@ public class Vendor {
 		return v.id == this.id;
 		
 	}
+	
+	/*@Override
+	public String toString() {
+		return firstname + " " + lastname;
+	}*/
 
 }
