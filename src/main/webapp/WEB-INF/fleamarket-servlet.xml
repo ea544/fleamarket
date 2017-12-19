@@ -84,9 +84,7 @@
 		<constructor-arg index="0" ref="eventService" />
 	</bean>
 	
-	<bean id="customerService" class="org.fleamarket.service.CustomerService">
-		<constructor-arg name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
 	
 	<bean id="reviewService" class="org.fleamarket.service.ReviewService">
 		<constructor-arg name="sessionFactory" ref="sessionFactory" />
@@ -114,15 +112,6 @@
 		</property>
 	</bean>
 	
-	<!-- the datasource -->
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost/fleamarket" />
-		<property name="username" value="root" />
-		<property name="password" value="sovello" />
-	</bean>
-	
 	<!-- Configure the entity manager factory bean -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -138,8 +127,8 @@
         </property>
     </bean>
 	<jpa:repositories base-package="org.fleamarket.user.dao"/>
-	<tx:annotation-driven transaction-manager="txManager" />
-	<bean id="txManager"
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

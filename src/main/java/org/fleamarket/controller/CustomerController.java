@@ -30,7 +30,7 @@ public class CustomerController {
     public String registration(@ModelAttribute("customerForm") Customer customerForm, Model model) {
     	
     	customerService.registerCustomer(customerForm);
-        return "Login";
+        return "redirect:/login";
     } 
     
     @RequestMapping(value = "/customerDetails/{id}", method = RequestMethod.GET)
