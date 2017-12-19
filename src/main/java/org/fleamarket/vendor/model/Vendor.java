@@ -1,4 +1,4 @@
-package org.fleamarket.domain;
+package org.fleamarket.vendor.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -3,8 +3,8 @@ package org.fleamarket.service;
 import java.util.List;
 
 import org.fleamarket.domain.Event;
-import org.fleamarket.domain.Vendor;
 import org.fleamarket.interfaces.IEventService;
+import org.fleamarket.vendor.model.Vendor;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
