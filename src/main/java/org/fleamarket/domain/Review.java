@@ -18,11 +18,16 @@ public class Review {
 	
 	public Review() {
 	}
-	public Review(int id, String details) {
-		super();
-		this.id = id;
+	/*public Review(String details) {
 		this.details = details;
+	}*/
+	public Customer getCustomer() {
+		return customer;
 	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	
 	public int getId() {
 		return id;
 	}
