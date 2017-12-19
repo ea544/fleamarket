@@ -6,7 +6,7 @@
 <body>
 	<div class="jumbotron">
 		<form:form method="POST" action="/fleamarket/products/productForm" 
-		modelAttribute="product" enctype="multipart/form-data">
+		modelAttribute="product">
 			<form:hidden path="id" />
 			<table>
 				<tr>
