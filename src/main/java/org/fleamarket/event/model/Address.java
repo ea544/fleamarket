@@ -1,4 +1,4 @@
-package org.fleamarket.domain;
+package org.fleamarket.event.model;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;

@@ -1,9 +1,9 @@
-package org.fleamarket.interfaces;
+package org.fleamarket.event.services;
 
 import java.util.List;
 
-import org.fleamarket.domain.Event;
 import org.fleamarket.domain.Vendor;
+import org.fleamarket.event.model.Event;
 
 public interface IEventService {
 
@@ -15,7 +15,7 @@ public interface IEventService {
 
 	public void editEvent(Event event);
 
-	public Event getEventById(int id);
+	/*public Event getEventById(int id);
 
 	public void addVendor(Integer id, Integer idVendor);
 	
@@ -29,7 +29,7 @@ public interface IEventService {
 	
 	public Vendor getOrganizerById(Integer id);
 	
-	public Vendor getOrganizer();
+	public Vendor getOrganizer();*/
 	
 	
 }

@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 
 
 
+import org.fleamarket.event.model.Address;
+
 @Entity
 public class Customer {
 	@Id
