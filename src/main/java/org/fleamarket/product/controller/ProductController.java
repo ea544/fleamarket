@@ -1,11 +1,10 @@
-package org.fleamarket.controller;
+package org.fleamarket.product.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.fleamarket.domain.Product;
-import org.fleamarket.exception.FleaMarketException;
-import org.fleamarket.service.ProductService;
+import org.fleamarket.product.model.Product;
+import org.fleamarket.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -66,9 +65,10 @@ public class ProductController {
 		}
 		catch(Exception e) {
 			System.out.println("The is zero so we are creating a product");
-			id = productService.createProduct(product);
+			Product prod = productService.saveProduct(product);
+			id = prod.getId();
 		}
-		return "redirect:/products/photosForm/"+id;
+		return "redirect:/products/photosForm/" + id;
 	}
 	
 	/**
@@ -102,12 +102,12 @@ public class ProductController {
 			if( photos.length > 0) {
 				for( MultipartFile f:photos ) {
 					System.out.println(f.getOriginalFilename());
-					try {
-						productService.addPhoto(id, f);
-					}
-					catch(FleaMarketException e) {
-						return "redirect:/products/productProfile/"+id;
-					}
+					// try {
+					// productService.addPhoto(id, f);
+					// }
+					// catch(FleaMarketException e) {
+					// return "redirect:/products/productProfile/"+id;
+					// }
 				}
 			}
 		}

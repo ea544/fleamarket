@@ -1,13 +1,21 @@
-package org.fleamarket.domain;
+package org.fleamarket.event.model;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 @Embeddable
 public class Address {
+	@NotEmpty
 	private String street;
+	@NotEmpty
 	private String city;
+	@NotEmpty
 	private String state;
+	@Range(min=10000, max=99999)
 	private int zip;
 	private String country;
 	

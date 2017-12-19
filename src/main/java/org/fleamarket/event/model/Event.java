@@ -1,23 +1,22 @@
-package org.fleamarket.domain;
+package org.fleamarket.event.model;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 
 import org.fleamarket.vendor.model.Vendor;
 
-@Entity
+//@Entity
 public class Event {
 
 	@Id
@@ -25,13 +24,15 @@ public class Event {
 	private int eventId;
 
 	private Date date;
-
+	@NotEmpty
 	private String title;
+	@NotEmpty
 	private String description;
 	private double organizingCostEstimate;
 	private double subscriptionFee;
 	private String review;
-
+	
+	@Valid
 	@Embedded
 	private Address address;
 
@@ -39,7 +40,7 @@ public class Event {
 	 @OneToMany(fetch=FetchType.EAGER)
 	 @JoinColumn(name = "eventId")
 	private List<Vendor> vendors = new ArrayList<Vendor>();
-
+	 
 	@OneToOne
 	@JoinColumn(name = "id")
 	private Vendor organizer;
@@ -72,11 +73,6 @@ public class Event {
 		this.organizer = organizer;
 		this.address = address;
 	}
-	
-	public void addVendor(Vendor vendor) {
-		this.vendors.add(vendor);
-	}
-	
 
 	public String getTitle() {
 		return title;
@@ -144,6 +140,11 @@ public class Event {
 
 	public List<Vendor> getVendors() {
 		return vendors;
+	}
+	
+	
+	public void addVendor(Vendor vendor) {
+		this.vendors.add(vendor);
 	}
 
 	public void setVendors(List<Vendor> vendors) {

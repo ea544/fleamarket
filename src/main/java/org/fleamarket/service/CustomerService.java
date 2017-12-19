@@ -2,40 +2,45 @@ package org.fleamarket.service;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.fleamarket.domain.Customer;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
+import org.fleamarket.user.dao.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CustomerService {
-	private SessionFactory sessionFactory;
+	@Autowired
+	CustomerRepository customerRepository;
 
-	public CustomerService(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	public CustomerService() {
+
 	}
 
-	@Transactional
+	
 	public void registerCustomer(Customer cust) {
-		sessionFactory.getCurrentSession().persist(cust);
+		customerRepository.save(cust);
+		//sessionFactory.getCurrentSession().persist(cust);
 	}
+	
+	// public void updateCustomer(Customer cust) {
+	// customerRepository.updateCustomer(cust);
+	// }
 
-	@SuppressWarnings("rawtypes")
-	@Transactional
+	
 	public Customer getCustomer(int id) {
 //		//TODO: find/get
 //		Query query = sessionFactory.getCurrentSession().createQuery("FROM Customer c WHERE c.id = :id");
 //		query.setParameter("id", id);
 //		Customer customer = (Customer)query.getSingleResult();
-		Customer customer = sessionFactory.getCurrentSession().find(Customer.class, id);
+		//Customer customer = sessionFactory.getCurrentSession().find(Customer.class, id);
 		// not recommended to do it like this customer.getReviews().size();
 		// when using query, you could use FETCH JOIN to retrieve associations
 		// Better even, if you config using JPA and fix the TX manager
-		return customer;
+		return customerRepository.findById(id);
 	}
-	@Transactional
+
 	public List<Customer> findAll(){
-		Query<Customer> query = sessionFactory.getCurrentSession().createQuery("FROM Customer");
-		return query.getResultList();
+		//Query<Customer> query = sessionFactory.getCurrentSession().createQuery("FROM Customer");
+		return customerRepository.findAll();
 	}
 }

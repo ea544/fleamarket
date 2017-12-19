@@ -1,7 +1,7 @@
 package org.fleamarket.controller;
 
 import org.fleamarket.domain.Customer;
-import org.fleamarket.domain.Product;
+import org.fleamarket.product.model.Product;
 import org.fleamarket.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +30,7 @@ public class CustomerController {
     public String registration(@ModelAttribute("customerForm") Customer customerForm, Model model) {
     	
     	customerService.registerCustomer(customerForm);
-        return "RegistrationConfirmation";
+        return "redirect:/login";
     } 
     
     @RequestMapping(value = "/customerDetails/{id}", method = RequestMethod.GET)

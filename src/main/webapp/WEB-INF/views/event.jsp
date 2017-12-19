@@ -13,7 +13,6 @@
 	<c:url var="getEventFunction" value="/event/getForm" ></c:url>
 	<c:url var="addVendorFunction" value="/event/eventAddVendor" ></c:url>
 	<c:url var="addEventFunction" value="/event/eventForm" ></c:url>
-	<c:url var="addOrganizerFunction" value="/event/eventAddOrganizer" ></c:url>
 	<table>
 		<tbody>
 			<tr>
@@ -23,6 +22,11 @@
 				<th>Date</th>
 				<th>Event cost</th>
 				<th>Subscription Fee</th>
+				<th>Street</th>
+				<th>City</th>
+				<th>State</th>
+				<th>Zip Code</th>
+				<th>Country</th>
 				<th>Review</th>
 				<th>Organizer</th>
 				<th>Vendors</th>
@@ -37,6 +41,11 @@
 					<td></td>
 					<td>${event.organizingCostEstimate}</td>
 					<td>${event.subscriptionFee}</td>
+					<td>${event.address.street}</td>
+					<td>${event.address.city}</td>
+					<td>${event.address.state}</td>
+					<td>${event.address.zip}</td>
+					<td>${event.address.country}</td>
 					<td>${event.review}</td>
 					<td>${event.organizer.id}</td>
 					<td>
