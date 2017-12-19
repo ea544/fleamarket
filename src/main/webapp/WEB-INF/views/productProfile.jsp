@@ -12,8 +12,7 @@
 					  <button type="button" class="list-group-item"><span class="label label-default">Price:</span> ${product.price}</button>
 					  <button type="button" class="list-group-item"><span class="label label-default">Quantity:</span> ${product.quantity}</button>
 					  <button type="button" class="list-group-item"><span class="label label-default">Description:</span> ${product.description}</button>
-					</div>
-					
+					</div>					
 					<div class="row">
 				  <div class="col-xs-6 col-md-3">
 				  	<c:forEach items="${product.photos}" var="image" >
