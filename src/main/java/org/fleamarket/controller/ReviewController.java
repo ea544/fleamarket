@@ -39,8 +39,8 @@ public class ReviewController {
     public String addReview(@ModelAttribute("addReview") Review review,@RequestParam("customerId") Integer customerId,@RequestParam("productId") Integer productId, Model model) {
 	
 		System.out.println("***************************************________________*********************************** id:: " + customerId);
-		Customer cust = customerService.getCustomer(customerId);
-		//cust.setId(customerId);
+		Customer cust = new Customer();//customerService.getCustomer(customerId);
+		cust.setId(customerId);
 		Product prod = new Product();
 		prod.setId(productId);
 		System.out.println("***************************************________________*********************************** cu:: " + cust);
@@ -51,7 +51,7 @@ public class ReviewController {
 		reviewService.addReview(review);
 		
 		
-		model.addAttribute("customer", cust);
+		model.addAttribute("customer", customerService.getCustomer(customerId));
 		
         return "customerDetails";
     } 

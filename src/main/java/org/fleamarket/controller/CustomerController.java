@@ -34,6 +34,7 @@ public class CustomerController {
     	else {
     	customerService.registerCustomer(customerForm);
         return "redirect:/login";
+    	//return "redirect:/confirmation";
     	}
     } 
     

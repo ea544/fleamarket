@@ -49,6 +49,7 @@ public class Customer {
 		this.name = name;
 		this.email = email;
 		this.address = address;
+		reviews = new ArrayList<Review>();
 		
 	}	
 
