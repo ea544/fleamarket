@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.fleamarket.event.dao.EventRepository;
 import org.fleamarket.event.model.Event;
+import org.fleamarket.vendor.dao.VendorRepository;
 import org.fleamarket.vendor.model.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +17,14 @@ public class EventService implements IEventService {
 	//private SessionFactory sessionFactory;
 	private EventRepository eventRepository;
 
+	@Autowired
+	private VendorRepository vendorRepository;
 	/*public EventService(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}*/
 
 	@Override
-	@Transactional
+	//@Transactional
 	public List<Event> getEvents() {
 		//Query<Event> query = sessionFactory.getCurrentSession().createQuery("from Event", Event.class);
 		List<Event> query = eventRepository.findAll();
@@ -29,14 +32,14 @@ public class EventService implements IEventService {
 	}
 
 	@Override
-	@Transactional
+	//@Transactional
 	public void createEvent(Event event) {
 		//essionFactory.getCurrentSession().persist(event);
 		eventRepository.save(event);
 	}
 	
 	@Override
-	@Transactional
+	//@Transactional
 	public void editEvent(Event event) {
 		//sessionFactory.getCurrentSession().update(event);
 		eventRepository.save(event);
@@ -45,13 +48,13 @@ public class EventService implements IEventService {
 	
 
 	@Override
-	@Transactional
+	//@Transactional
 	public void deleteEvent(int id) {
-		//Event event = getEventById(id);
+		Event event = getEventById(id);
 		//if (event != null) {
 			//sessionFactory.getCurrentSession().delete(event);
-			//eventRepository.delete(event);
-			eventRepository.removeByEventId(id);
+			eventRepository.delete(event);
+			//eventRepository.removeByEventId(eventRepository.findById(id));
 		}
 	//}
 
@@ -66,98 +69,78 @@ public class EventService implements IEventService {
 		//return event;
 		return eventRepository.getEventByEventId(id);
 	}
-
+	
+	
+	//@Transactional
 	@Override
 	public List<Vendor> getVendorsByEventId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		//Query query = sessionFactory.getCurrentSession().createQuery("FROM Event p WHERE p.eventId = :id");
+		List<Vendor> vendors = eventRepository.getVendorByEventId(id);
+		//query.setParameter("id", id);
+		//Event event = (Event) query.getSingleResult();
+		//return event.getVendors();
+		return vendors;
 	}
 
-	@Override
-	public List<Vendor> getVendors() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addVendor(int eventId, int vendorId) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteVendor(int eventId, int vendorId) {
-		// TODO Auto-generated method stub
-
-	}
 	
 	//vendors
 	
-	/*@Transactional
+	//@Transactional
 	public List<Vendor> getEventById() {
 		//Query<Vendor> query = sessionFactory.getCurrentSession().createQuery("from Vendor", Vendor.class);
-		List<Vendor> query = eventRepository.findAllVendors();
-		return query;
+		//List<Vendor> query = vendorRepository.findAll();
+		return vendorRepository.findAll(); //query;
 	}
 
-	@Transactional
+	//@Transactional
 	public void addVendor(Integer idEvent, Integer idVendor) {	
 		Event event = getEventById(idEvent);
 		event.addVendor(getVendorById(idVendor));
 		//sessionFactory.getCurrentSession().update(event);
-
 		eventRepository.save(event);
 	}
 	
 	
-	@Transactional
+	//@Transactional
 	public Vendor getVendorById(Integer id) {
 		//Query query = sessionFactory.getCurrentSession().createQuery("FROM Vendor p WHERE p.id = :id");
-		List<Vendor> vendor =  eventRepository.getVendorById(id);
+		//List<Vendor> vendor =  vendorRepository.findVendorById(id);
 		
 		//query.setParameter("id", id);
 		
 		//Vendor vendor = (Vendor) query.getSingleResult();
-		return (Vendor) vendor;
+		return (Vendor) vendorRepository.findVendorById(id);
 	}
 	
-	/*@Transactional
+	//@Transactional
 	public List<Vendor> getVendors() {
 		//Query<Vendor> query = sessionFactory.getCurrentSession().createQuery("from Vendor", Vendor.class);
-		List<Vendor> query = eventRepository.findAllVendors();
+		List<Vendor> query = vendorRepository.findAll();
 		return query;
 	}
 
-	@Transactional
-	public List<Vendor> getVendorsByEventId(Integer id) {
-		//Query query = sessionFactory.getCurrentSession().createQuery("FROM Event p WHERE p.eventId = :id");
-		List<Vendor> event = eventRepository.getVendorById(id);
-		//query.setParameter("id", id);
-		//Event event = (Event) query.getSingleResult();
-		//return event.getVendors();
-		return event;
-	}
+
 
 	@Transactional
-	public void deleteVendor(Integer id, Integer idVendor) {
+	public void deleteVendor(int id, Integer idVendor) {
 		//Event event = getEventById(id);
-		List<Event> event = eventRepository.getEventById(id);
-		List<Vendor> vendors = eventRepository.findAllVendors();
+		//--------List<Event> event =  eventRepository.getEventByEventId(id);
+		//---------List<Vendor> vendors = vendorRepository.findAll();
 		//event.getVendors().remove(getVendorById(idVendor));
 		//sessionFactory.getCurrentSession().update(event);
-		eventRepository.getVendorsByEventId(id);
+		//---------eventRepository.getVendorsByEventId(id);
 	}
 	
 	//organizers
 
-	@Transactional
+	//@Transactional
 	public void addOrganizer(Integer idEvent, Integer idVendor) {		
 		Event event = getEventById(idEvent);
 		sessionFactory.getCurrentSession().update(event);
 	}
 	
 
-	@Transactional
+	//@Transactional
 	public Vendor getOrganizerById(Integer id) {
 		Query query = sessionFactory.getCurrentSession().createQuery("FROM Vendor p WHERE p.id = :id");
 		query.setParameter("id", id);
@@ -165,12 +148,24 @@ public class EventService implements IEventService {
 		return vendor;
 	}
 
-	@Transactional
+	//@Transactional
 	public Vendor getOrganizer() {
 		Query<Vendor> query = sessionFactory.getCurrentSession().createQuery("from Vendor", Vendor.class);
 		return (Vendor) query;
 	}
-*/
+
+	@Override
+	public void addVendor(int eventId, int vendorId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteVendor(int eventId, int vendorId) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 }

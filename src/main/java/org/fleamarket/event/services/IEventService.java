@@ -13,8 +13,11 @@ public interface IEventService {
 	public void deleteEvent(int id);
 
 	public void editEvent(Event event);
+	
+	public Object getEventById(int id);
 
 	public List<Vendor> getVendorsByEventId(int id);
+	
 
 	public List<Vendor> getVendors();
 
@@ -22,7 +25,7 @@ public interface IEventService {
 
 	public void deleteVendor(int eventId, int vendorId);
 
-	public Object getEventById(int id);
+	
 
 	/*public Event getEventById(int id);
 

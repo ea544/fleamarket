@@ -9,13 +9,14 @@ import org.hibernate.validator.constraints.Range;
 
 @Embeddable
 public class Address {
-	@NotEmpty
+	
+	@NotEmpty//(message = "*Please provide a street of the event")
 	private String street;
-	@NotEmpty
+	@NotEmpty//(message = "*Please provide a city of the event")
 	private String city;
-	@NotEmpty
+	@NotEmpty//(message = "*Please provide a state of the event")
 	private String state;
-	@Range(min=10000, max=99999)
+	@Range(min=10000, max=99999)//, message = "*Please provide a zip code of the event")
 	private int zip;
 	private String country;
 	

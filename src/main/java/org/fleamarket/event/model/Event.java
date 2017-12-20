@@ -24,10 +24,10 @@ public class Event {
 	@GeneratedValue
 	private int eventId;
 
-	private Date date;
-	@NotEmpty
+	private String date;
+	@NotEmpty//(message = "*Please provide a title of the event")
 	private String title;
-	@NotEmpty
+	@NotEmpty//(message = "*Please provide a description of the event")
 	private String description;
 	private double organizingCostEstimate;
 	private double subscriptionFee;
@@ -50,7 +50,7 @@ public class Event {
 		super();
 	}
 
-	public Event(String title, String description, double organizingCostEstimate, double subscriptionFee, String review,
+	/*public Event(String title, String description, double organizingCostEstimate, double subscriptionFee, String review,
 			Vendor organizer, List<Vendor> vendors) {
 		super();
 		this.title = title;
@@ -60,9 +60,9 @@ public class Event {
 		this.review = review;
 		this.organizer = organizer;
 		this.vendors = vendors;
-	}
+	}*/
 
-	public Event(String title, String description, Date date, double organizingCostEstimate, double subscriptionFee,
+	/*public Event(String title, String description, String date, double organizingCostEstimate, double subscriptionFee,
 			String review, Vendor organizer, Address address, List<Vendor> vendors) {
 		super();
 		this.title = title;
@@ -74,7 +74,7 @@ public class Event {
 		this.organizer = organizer;
 		this.address = address;
 	}
-
+*/
 	public String getTitle() {
 		return title;
 	}
@@ -91,11 +91,11 @@ public class Event {
 		this.description = description;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

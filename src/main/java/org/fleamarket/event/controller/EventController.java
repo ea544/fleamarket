@@ -2,6 +2,8 @@ package org.fleamarket.event.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.fleamarket.event.model.Event;
 import org.fleamarket.event.services.IEventService;
 import org.fleamarket.vendor.model.Vendor;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +39,12 @@ public class EventController {
 
 	// save event
 	@RequestMapping(value = "/event/eventForm", method = RequestMethod.POST)
-	public String createEvent(@ModelAttribute("event") Event event, ModelMap model) {
+	public String createEvent(/*@ModelAttribute("event")*/ Event event, ModelMap model, BindingResult result) {
+		
+		if(result.hasErrors()) {
+			return "event";
+		}
+		
 		if (event.getEventId() == 0) {
 			eventService.createEvent(event);
 		} else {
