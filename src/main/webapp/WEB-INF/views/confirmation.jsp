@@ -14,7 +14,6 @@
 <title>Customer Registration</title>
 </head>
 <body>
-<h1>Welcome</h1>
-<a href="">Add Review</a>
+
 </body>
 </html>

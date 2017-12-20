@@ -1,5 +1,7 @@
 package org.fleamarket.user.dao;
 
+import java.util.Optional;
+
 import org.fleamarket.domain.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 

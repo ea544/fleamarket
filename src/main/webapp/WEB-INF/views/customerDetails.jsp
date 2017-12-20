@@ -13,16 +13,16 @@
 		<tbody>
 		<tr><td colspan="5">${customer.name} Reviews</td></tr>
 		<tr>
-		<td>1</td>
-		<td>2</td>
-	
+		<td>#</td>
+		<td>Review</td>
+		<td>Product</td>
 		
 		</tr>
 		<c:forEach var="review" items="${customer.reviews}">
 			<tr>
 				<td>${review.id}</td>
 				<td>${review.details}</td>
-			
+				<td>${review.product.productName}</td>
 				
 			</tr>
 		</c:forEach>

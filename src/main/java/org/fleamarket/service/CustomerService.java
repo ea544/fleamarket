@@ -1,9 +1,14 @@
 package org.fleamarket.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.fleamarket.domain.Customer;
 import org.fleamarket.user.dao.CustomerRepository;
+import org.fleamarket.user.dao.UserRepository;
+import org.fleamarket.user.model.Role;
+import org.fleamarket.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +16,8 @@ import org.springframework.stereotype.Service;
 public class CustomerService {
 	@Autowired
 	CustomerRepository customerRepository;
+	@Autowired
+	UserRepository userRepository;
 
 	public CustomerService() {
 
@@ -18,14 +25,14 @@ public class CustomerService {
 
 	
 	public void registerCustomer(Customer cust) {
+		
 		customerRepository.save(cust);
-		//sessionFactory.getCurrentSession().persist(cust);
+		//System.out.println("*****************************************************Password " + cust.getPassword());
+		Set<Role> role = new HashSet<Role>();
+		role.add(new Role("CUSTOMER"));
+		userRepository.save(new User(cust.getEmail(),cust.getPassword(),role));
+		
 	}
-	
-	// public void updateCustomer(Customer cust) {
-	// customerRepository.updateCustomer(cust);
-	// }
-
 	
 	public Customer getCustomer(int id) {
 //		//TODO: find/get
@@ -40,7 +47,12 @@ public class CustomerService {
 	}
 
 	public List<Customer> findAll(){
-		//Query<Customer> query = sessionFactory.getCurrentSession().createQuery("FROM Customer");
 		return customerRepository.findAll();
 	}
+	
+	public void deleteCustomer(Customer cust) {
+		customerRepository.delete(cust);
+	}
+	
+
 }

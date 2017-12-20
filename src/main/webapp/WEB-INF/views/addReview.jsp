@@ -16,7 +16,8 @@
 <body>
 <h1>Flea Market - Add Review</h1>
 	<form:form method="POST" modelAttribute="addReview" >
-	<input type="hidden" name="customerId" value="${addReview.customer.id }" ></input>  
+	<input type="hidden" name="customerId" value="${customer_id}" ></input> 
+	<input type="hidden" name="productId" value="${product_id}" ></input>   
         <h2>Add Review</h2>
 	<table>
 		<tr>
@@ -27,7 +28,7 @@
 		</tr>
 		
 	</table>
-        <form:input type="text" path="details" placeholder="Review Text" autofocus="true" ></form:input>    
+        <form:textarea  type="text" rows="5" cols="20" path="details" placeholder="Review Text" autofocus="true" ></form:textarea >    
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form:form>
 	
