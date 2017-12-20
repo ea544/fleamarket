@@ -46,70 +46,17 @@
 		<!-- <constructor-arg name="sessionFactory" ref="sessionFactory" /> -->
 		<constructor-arg value="/home/sovello/Desktop/maharishi/ea/uploadsDir/product_photos/" />
 	</bean>
-	
-	<!--
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="hibernateProperties" ref="hibernateProperties" />
-		<property name="annotatedClasses">
-			<list>
-				<value>org.fleamarket.domain.Event</value>
-				<value>org.fleamarket.vendor.model.Vendor</value>
-				<value>org.fleamarket.event.model.Event</value>
-				<value>org.fleamarket.domain.Vendor</value>
-				<value>org.fleamarket.domain.Product</value>
-				<value>org.fleamarket.domain.Customer</value>
-				<value>org.fleamarket.domain.Review</value>
-				<value>org.fleamarket.user.model.User</value>
-				<value>org.fleamarket.user.model.Role</value>
-			</list>
-		</property>
-	</bean>
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost/fleamarket" />
-		<property name="username" value="root" />
-		<property name="password" value="root" />
-	</bean>
-	
-	<bean id="eventService" class="org.fleamarket.service.EventService">
-		<constructor-arg name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	<bean id="productService" class="org.fleamarket.service.ProductService">
-		<constructor-arg name="sessionFactory" ref="sessionFactory" />
-		<constructor-arg name="uploadsDir" value="/home/sovello/Desktop/maharishi/ea/uploadsDir/product_photos/" />
-	</bean>
-	
-	 <bean id="eventController" class="org.fleamarket.controller.EventController">
-		<constructor-arg index="0" ref="eventService" />
-	</bean>
-
-	
-	<bean id="reviewService" class="org.fleamarket.service.ReviewService">
-		<constructor-arg name="sessionFactory" ref="sessionFactory" />
-	</bean>
-		
-	<bean id="hibernateProperties"
-		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-		<property name="properties">
-			<props>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect
-				</prop>
-				<prop key="connection.pool_size">1</prop>
-				<prop key="hibernate.show_sql">true</prop>
-			</props>
-		</property>
-	</bean>
-	-->
+	<bean id="messageSource"
+        class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages" />
+ 		<property name="fallbackToSystemLocale" value="false" />
+    </bean>
 	<!-- the datasource -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost/fleamarket" />
 		<property name="username" value="root" />
-		<property name="password" value="root" />
+		<property name="password" value="sovello" />
 	</bean>
 	
 	<!-- Configure the entity manager factory bean -->

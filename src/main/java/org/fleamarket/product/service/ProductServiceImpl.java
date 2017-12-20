@@ -120,8 +120,14 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product getProduct(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return productRepository.findById(id).get();
 	}
+
+	@Override
+	public Product getProductWithPhotos(Integer id) {
+		return productRepository.getProductWithPhotos(id);
+	}
+	
+
 
 }

@@ -1,13 +1,14 @@
 package org.fleamarket.controller;
 
 import org.fleamarket.domain.Customer;
-import org.fleamarket.product.model.Product;
 import org.fleamarket.service.CustomerService;
+import org.fleamarket.user.model.User;
+import org.fleamarket.user.service.RoleService;
+import org.fleamarket.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,12 @@ public class CustomerController {
 	@Autowired
     private CustomerService customerService;
 	
+	@Autowired
+	private UserService userService;
 	
+	@Autowired
+	private RoleService roleService;
+
     @RequestMapping(value = "/customerForm", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("customerForm", new Customer());
@@ -27,6 +33,7 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/customerForm", method = RequestMethod.POST)
+
     public String registration(@ModelAttribute("customerForm") Customer customerForm, BindingResult result, Model model) {
     	if(result.hasErrors()) {
     		return "customerForm";

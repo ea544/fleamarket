@@ -33,7 +33,6 @@
 		    <artifactId>hibernate-validator</artifactId>
 		    <version>${hbmvalidator.version}</version>
 		</dependency>
-				
 		<!-- spring data -->
 		<dependency>
 		    <groupId>org.springframework.data</groupId>

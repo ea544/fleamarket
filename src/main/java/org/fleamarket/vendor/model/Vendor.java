@@ -1,12 +1,12 @@
 package org.fleamarket.vendor.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 import org.fleamarket.event.model.Event;
 
@@ -15,20 +15,24 @@ public class Vendor {
 	@Id
 	@GeneratedValue
 	public Integer id;
-
+	@NotEmpty
 	private String firstname;
 	private String lastname;
+	@NotEmpty
+	@Email
 	private String email;
 
-	@OneToMany(mappedBy = "vendors", fetch = FetchType.EAGER)
-	private List<Event> events;
 
-	public List<Event> getEvents() {
-		return events;
+	@ManyToOne
+	@JoinColumn(name = "event_id")
+	private Event event;
+
+	public Event getEvent() {
+		return event;
 	}
 
-	public void setEvents(List<Event> events) {
-		this.events = events;
+	public void setEvent(Event event) {
+		this.event = event;
 	}
 
 	public Vendor() {}
@@ -87,9 +91,9 @@ public class Vendor {
 		
 	}
 	
-	/*@Override
+	@Override
 	public String toString() {
 		return firstname + " " + lastname;
-	}*/
+	}
 
 }

@@ -16,8 +16,8 @@ public class EventService implements IEventService {
 	@Override
 	public List<Event> getEvents() {
 
-		List<Event> query = eventRepository.findAll();
-		//List<Event> query = eventRepository.getEventsWithVendors();
+		// List<Event> query = eventRepository.findAll();
+		List<Event> query = eventRepository.getEventsWithVendors();
 		return query;
 	}
 

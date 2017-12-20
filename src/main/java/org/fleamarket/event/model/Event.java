@@ -2,18 +2,14 @@ package org.fleamarket.event.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
 
 import org.fleamarket.vendor.model.Vendor;
 
@@ -38,7 +34,8 @@ public class Event {
 	@Embedded
 	private Address address;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany
+	// @OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "eventId")
 	private List<Vendor> vendors = new ArrayList<Vendor>();
 
