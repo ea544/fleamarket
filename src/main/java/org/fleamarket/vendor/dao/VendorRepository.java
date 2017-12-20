@@ -7,9 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository("vendorRepository")
 public interface VendorRepository extends JpaRepository<Vendor, Integer> {
 
-	Vendor findByFirstname(String firstname);
-
-	Vendor findByLastname(String lastname);
-
-	Vendor findByEmail(String email);
 }
