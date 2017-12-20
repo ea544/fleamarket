@@ -3,6 +3,7 @@ package org.fleamarket.vendor.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -19,7 +20,7 @@ public class Vendor {
 	private String lastname;
 	private String email;
 
-	@OneToMany(mappedBy = "vendors")
+	@OneToMany(mappedBy = "vendors", fetch = FetchType.EAGER)
 	private List<Event> events;
 
 	public List<Event> getEvents() {

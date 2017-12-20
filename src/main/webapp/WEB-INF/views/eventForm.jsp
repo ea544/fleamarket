@@ -18,7 +18,6 @@
 				<tr>
 					<td>Title of the Event:</td>
 					<td><form:input type="text" path="title" />
-						<form:errors path="title" />
 					</td>
 				</tr>
 

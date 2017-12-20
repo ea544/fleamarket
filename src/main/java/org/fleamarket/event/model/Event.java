@@ -1,6 +1,5 @@
 package org.fleamarket.event.model;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,23 +24,22 @@ public class Event {
 	private int eventId;
 
 	private String date;
-	@NotEmpty//(message = "*Please provide a title of the event")
+	//@NotEmpty // (message = "*Please provide a title of the event")
 	private String title;
-	@NotEmpty//(message = "*Please provide a description of the event")
+//	@NotEmpty // (message = "*Please provide a description of the event")
 	private String description;
 	private double organizingCostEstimate;
 	private double subscriptionFee;
 	private String review;
-	
-	@Valid
+
+	//@Valid
 	@Embedded
 	private Address address;
 
-	
-	 @OneToMany(fetch=FetchType.EAGER)
-	 @JoinColumn(name = "eventId")
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "eventId")
 	private List<Vendor> vendors = new ArrayList<Vendor>();
-	 
+
 	@OneToOne
 	@JoinColumn(name = "id")
 	private Vendor organizer;
@@ -50,41 +48,36 @@ public class Event {
 		super();
 	}
 
-	/*public Event(String title, String description, double organizingCostEstimate, double subscriptionFee, String review,
-			Vendor organizer, List<Vendor> vendors) {
-		super();
-		this.title = title;
-		this.description = description;
-		this.organizingCostEstimate = organizingCostEstimate;
-		this.subscriptionFee = subscriptionFee;
-		this.review = review;
-		this.organizer = organizer;
-		this.vendors = vendors;
-	}*/
+	/*
+	 * public Event(String title, String description, double organizingCostEstimate,
+	 * double subscriptionFee, String review, Vendor organizer, List<Vendor>
+	 * vendors) { super(); this.title = title; this.description = description;
+	 * this.organizingCostEstimate = organizingCostEstimate; this.subscriptionFee =
+	 * subscriptionFee; this.review = review; this.organizer = organizer;
+	 * this.vendors = vendors; }
+	 */
 
-	/*public Event(String title, String description, String date, double organizingCostEstimate, double subscriptionFee,
-			String review, Vendor organizer, Address address, List<Vendor> vendors) {
-		super();
-		this.title = title;
-		this.description = description;
-		this.date = date;
-		this.organizingCostEstimate = organizingCostEstimate;
-		this.subscriptionFee = subscriptionFee;
-		this.review = review;
-		this.organizer = organizer;
-		this.address = address;
+	/*
+	 * public Event(String title, String description, String date, double
+	 * organizingCostEstimate, double subscriptionFee, String review, Vendor
+	 * organizer, Address address, List<Vendor> vendors) { super(); this.title =
+	 * title; this.description = description; this.date = date;
+	 * this.organizingCostEstimate = organizingCostEstimate; this.subscriptionFee =
+	 * subscriptionFee; this.review = review; this.organizer = organizer;
+	 * this.address = address; }
+	 */
+	
+
+	public String getDescription() {
+		return description;
 	}
-*/
+
 	public String getTitle() {
 		return title;
 	}
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getDescription() {
-		return description;
 	}
 
 	public void setDescription(String description) {
@@ -142,8 +135,7 @@ public class Event {
 	public List<Vendor> getVendors() {
 		return vendors;
 	}
-	
-	
+
 	public void addVendor(Vendor vendor) {
 		this.vendors.add(vendor);
 	}

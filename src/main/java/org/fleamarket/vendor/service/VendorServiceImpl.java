@@ -1,5 +1,6 @@
 package org.fleamarket.vendor.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.fleamarket.vendor.dao.VendorRepository;
@@ -27,5 +28,11 @@ public class VendorServiceImpl implements VendorService {
 	@Override
 	public void updateVendor(Vendor vendor) {
 		vendorRepository.save(vendor);
+	}
+
+	@Override
+	public List<Vendor> findAll() {
+		// TODO Auto-generated method stub
+		return vendorRepository.findAll();
 	}
 }

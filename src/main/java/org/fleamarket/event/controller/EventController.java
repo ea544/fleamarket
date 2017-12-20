@@ -2,32 +2,32 @@ package org.fleamarket.event.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.fleamarket.event.model.Event;
 import org.fleamarket.event.services.IEventService;
 import org.fleamarket.vendor.model.Vendor;
+import org.fleamarket.vendor.service.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-/*@RequestMapping(value = "/events") */
-
 public class EventController {
 
 	@Autowired
 	IEventService eventService;
 
-	/*public EventController(IEventService eventService) {
+	@Autowired
+	VendorService vendorService;
+
+	public EventController(IEventService eventService, VendorService vendorService) {
 		this.eventService = eventService;
-	}*/
+		this.vendorService = vendorService;
+	}
 
 	// Show all events
 	@RequestMapping(value = "/event/eventList", method = RequestMethod.GET)
@@ -39,12 +39,12 @@ public class EventController {
 
 	// save event
 	@RequestMapping(value = "/event/eventForm", method = RequestMethod.POST)
-	public String createEvent(/*@ModelAttribute("event")*/ Event event, ModelMap model, BindingResult result) {
-		
-		if(result.hasErrors()) {
+	public String createEvent(/* @ModelAttribute("event") */ Event event, ModelMap model, BindingResult result) {
+
+		if (result.hasErrors()) {
 			return "event";
 		}
-		
+
 		if (event.getEventId() == 0) {
 			eventService.createEvent(event);
 		} else {
@@ -59,7 +59,7 @@ public class EventController {
 	@RequestMapping(value = "/event/eventForm", method = RequestMethod.GET)
 	public String eventForm(ModelMap model) {
 		Event event = new Event();
-		model.addAttribute("organizers", eventService.getVendors());
+		model.addAttribute("organizers", vendorService.findAll());
 		model.addAttribute("event", event);
 		model.addAttribute("edit", false);
 		return "eventForm";
@@ -68,8 +68,13 @@ public class EventController {
 	// Edit event
 	@RequestMapping(value = "/event/getForm/{id}", method = RequestMethod.GET)
 	public String editEvent(@PathVariable("id") int id, Model model) {
-		model.addAttribute("event", eventService.getEventById(id));
-		model.addAttribute("organizers", eventService.getVendors());
+		
+		Event event = eventService.getEventById(id);
+		
+		System.out.println(event);
+		model.addAttribute("event", event);
+		
+		model.addAttribute("organizers", vendorService.findAll());
 		return "eventForm";
 	}
 
@@ -85,7 +90,7 @@ public class EventController {
 
 	@RequestMapping(value = "/event/vendorList", method = RequestMethod.GET)
 	public String getAllVendors(Model model) {
-		model.addAttribute("vendors", eventService.getVendors());
+		model.addAttribute("vendors", vendorService.findAll());
 		return "eventVendors";
 
 	}
@@ -93,8 +98,10 @@ public class EventController {
 	// add vendor
 	@RequestMapping(value = "/event/eventAddVendor/{id}", method = RequestMethod.GET)
 	public String addVendor(@PathVariable("id") int id, ModelMap model) {
-		List<Vendor> selected = eventService.getVendorsByEventId(id);
-		List<Vendor> vendorList = eventService.getVendors();			
+
+		Event e = eventService.getEventById(id);
+		List<Vendor> selected = e.getVendors();
+		List<Vendor> vendorList = vendorService.findAll();
 		vendorList.removeAll(selected);
 		model.addAttribute("vendors", vendorList);
 		model.addAttribute("selectedVendors", selected);
@@ -109,11 +116,16 @@ public class EventController {
 		System.out.println("event Id : " + eventId);
 		System.out.println("vendor Id : " + vendorId);
 
-		eventService.addVendor(eventId, vendorId);
+		Event event = eventService.getEventById(eventId);
 
-		List<Vendor> selected = eventService.getVendorsByEventId(eventId);
-		List<Vendor> vendorList = eventService.getVendors();
-		
+		event.addVendor(vendorService.findVendorById(vendorId).get());
+
+		eventService.updateEvent(event);
+
+		Event e = eventService.getEventById(eventId);
+		List<Vendor> selected = e.getVendors();
+		List<Vendor> vendorList = vendorService.findAll();
+
 		vendorList.removeAll(selected);
 		model.addAttribute("vendors", vendorList);
 		model.addAttribute("selectedVendors", selected);
@@ -129,11 +141,16 @@ public class EventController {
 		System.out.println("event Id : " + eventId);
 		System.out.println("vendor Id : " + vendorId);
 
-		eventService.deleteVendor(eventId, vendorId);
+		Event event = eventService.getEventById(eventId);
 
-		List<Vendor> selected = eventService.getVendorsByEventId(eventId);
-		List<Vendor> vendorList = eventService.getVendors();
-		
+		event.getVendors().remove(vendorService.findVendorById(vendorId).get());
+
+		eventService.updateEvent(event);
+
+		Event e = eventService.getEventById(eventId);
+		List<Vendor> selected = e.getVendors();
+		List<Vendor> vendorList = vendorService.findAll();
+
 		vendorList.removeAll(selected);
 		model.addAttribute("vendors", vendorList);
 		model.addAttribute("selectedVendors", selected);
@@ -141,11 +158,11 @@ public class EventController {
 
 		return "eventVendors";
 	}
-	
-	///Organizers	
+
+	/// Organizers
 	@RequestMapping(value = "/event/eventAddOrganizer/{id}", method = RequestMethod.GET)
 	public String getAllOrganizers(@PathVariable("id") int id, Model model) {
-		model.addAttribute("vendors", eventService.getVendors());
+		model.addAttribute("vendors", vendorService.findAll());
 		return "eventVendors";
 
 	}
