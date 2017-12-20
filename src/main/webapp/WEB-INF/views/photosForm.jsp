@@ -8,22 +8,22 @@
 <title>FleaMarket :: Product Form</title>
 </head>
 <body>
-	<form:form method="POST" action="/fleamarket/products/photosForm" 
+	<form:form method="POST" action="/fleamarket/products/photos/photosForm" 
 	modelAttribute="productProxy" enctype="multipart/form-data">
-		<form:input type="text" path="id" />
+		<form:hidden path="id" />
 		<table>
 			<tr>
 				<td>Photo 1:</td>
-				<td><form:input type="file" path="photos" /></td>
+				<td><form:input type="file" path="photos" multiple="multiple" /></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td>Photo 2:</td>
 				<td><form:input type="file" path="photos" /></td>
 			</tr>
 			<tr>
 				<td>Photo 2:</td>
 				<td><form:input type="file" path="photos" /></td>
-			</tr>
+			</tr> -->
 		</table>
 		<input type="submit" value="Submit"/>
 	</form:form>

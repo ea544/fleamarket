@@ -26,7 +26,7 @@
 					
 			  </div>
 		</div>
-	<a href="/fleamarket/products/photosForm/${product.id }">Add photos for the product</a><br>
+	<a href="/fleamarket/products/photos/photosForm/${product.id }">Add photos for the product</a><br>
 	<a href="../productForm/${product.id}">Click here to edit this product</a>
 	</div>
 </body>

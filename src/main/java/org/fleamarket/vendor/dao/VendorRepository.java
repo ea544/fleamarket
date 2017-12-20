@@ -19,5 +19,9 @@ public interface VendorRepository extends JpaRepository<Vendor, Integer> {
 
 	@Query("FROM Vendor v RIGHT JOIN v.event e where v.id = :id")
 	List<Vendor> findVendorWithEvents(@Param("id") Integer id);
+	
+	@Override
+	@Query("FROM Vendor v LEFT JOIN FETCH v.event")
+	List<Vendor> findAll();
 
 }
