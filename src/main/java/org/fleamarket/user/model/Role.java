@@ -23,6 +23,12 @@ public class Role {
 	private Set<User> users;
 
 	public Role() {}
+	
+	public Role(String role) {
+		super();
+		this.role = role;
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -13,8 +13,8 @@
 		<tbody>
 		<tr><td colspan="5">${customer.name} Reviews</td></tr>
 		<tr>
-		<td>1</td>
-		<td>2</td>
+		<td>ID</td>
+		<td>Details</td>
 	
 		
 		</tr>

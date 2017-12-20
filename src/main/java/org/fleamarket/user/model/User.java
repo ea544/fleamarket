@@ -41,6 +41,20 @@ public class User {
 
 	public User() {}
 	
+	
+	
+	public User(
+			@Email(message = "*Email can't be blank") @NotEmpty(message = "*Please provide an username") String username,
+			@Length(min = 5, message = "*Your password must have at least 5 characters") @NotEmpty(message = "*Password is required") String password,
+			Set<Role> roles) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.roles = roles;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}
