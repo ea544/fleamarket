@@ -55,7 +55,7 @@
 		                <h4>Thumbnail label</h4>
 		                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
 		                <p><a href="#" class="btn btn-info btn-xs" role="button">Details</a> 
-		                <a href="#" class="btn btn-default btn-xs" role="button">Review</a></p>
+		                <a href="addReview?cid=1&pid=1" class="btn btn-default btn-xs" role="button">Review</a></p>
 		            </div>
 		          </div>
 		        </div>	

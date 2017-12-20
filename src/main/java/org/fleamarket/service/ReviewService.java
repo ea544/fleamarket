@@ -1,20 +1,21 @@
 package org.fleamarket.service;
 
-import javax.transaction.Transactional;
+
 
 import org.fleamarket.domain.Review;
-import org.hibernate.SessionFactory;
-
+import org.fleamarket.user.dao.ReviewRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+@Service
 public class ReviewService {
 
-	private SessionFactory sessionFactory;
+	@Autowired
+	private ReviewRepository reviewRepository;
 
-	public ReviewService(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	public ReviewService() {
 	}
 	
-	@Transactional
 	public void addReview(Review review) {
-		sessionFactory.getCurrentSession().persist(review);
+		reviewRepository.save(review);
 	}
 }

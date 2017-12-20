@@ -10,18 +10,27 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 import org.fleamarket.event.model.Address;
+import org.fleamarket.user.model.User;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class Customer {
 	@Id
 	@GeneratedValue
 	private int id;
+	@NotEmpty(message = "*Please provide a name")
 	private String name;
+	@Email(message = "*Email can't be blank, please provide a valid email address")
+	@NotEmpty(message = "*Please provide a email address")
 	private String email;
+	@Length(min = 5, message = "*Your password must have at least 5 characters")
+	@Transient
 	private String password;
 	@Embedded
 	private Address address;
@@ -40,6 +49,7 @@ public class Customer {
 		this.name = name;
 		this.email = email;
 		this.address = address;
+		reviews = new ArrayList<Review>();
 		
 	}	
 

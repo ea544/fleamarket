@@ -33,11 +33,16 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/customerForm", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("customerForm") Customer customerForm, Model model) {
-		User user = new User(customerForm.getEmail(), customerForm.getPassword());
-		userService.saveUser(user);
+
+    public String registration(@ModelAttribute("customerForm") Customer customerForm, BindingResult result, Model model) {
+    	if(result.hasErrors()) {
+    		return "customerForm";
+    	}
+    	else {
     	customerService.registerCustomer(customerForm);
         return "redirect:/login";
+    	//return "redirect:/confirmation";
+    	}
     } 
     
     @RequestMapping(value = "/customerDetails/{id}", method = RequestMethod.GET)
