@@ -9,7 +9,7 @@
 </head>
 <body>
 	<form:form method="POST" action="/fleamarket/products/photosForm" 
-	modelAttribute="product" enctype="multipart/form-data">
+	modelAttribute="productProxy" enctype="multipart/form-data">
 		<form:input type="text" path="id" />
 		<table>
 			<tr>

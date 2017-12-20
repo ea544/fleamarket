@@ -19,12 +19,12 @@ public class VendorValidator implements Validator {
 
 	@Override
 	public void validate(Object obj, Errors error) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(error, "firstname", "vendor.firstname.empty");
-		ValidationUtils.rejectIfEmptyOrWhitespace(error, "email", "vendor.email.empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(error, "firstname", "NotEmpty.firstname.empty", "");
+		ValidationUtils.rejectIfEmptyOrWhitespace(error, "email", "NotEmpty.email.empty", "");
 
 		Vendor vendor = (Vendor) obj;
 		if (!isValidEmailAddress(vendor.getEmail()))
-			error.rejectValue("email", "email.invalid", "vendor.email.invalid");
+			error.rejectValue("email", "Email.email.invalid", "");
 	}
 
 	public boolean isValidEmailAddress(String emailAddress){ 

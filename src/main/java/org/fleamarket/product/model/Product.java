@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
@@ -21,7 +20,7 @@ public class Product {
 	private String description;
 	private String quantity;
 	private String price;
-	@ElementCollection(fetch=FetchType.EAGER)
+	@ElementCollection
 	private List<String> photos = new ArrayList<String>();
 	
 	public Product() {}

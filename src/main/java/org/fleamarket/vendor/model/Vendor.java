@@ -7,7 +7,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import org.fleamarket.event.model.Event;
 
@@ -17,7 +16,6 @@ public class Vendor {
 	@GeneratedValue
 	public Integer id;
 	@NotEmpty
-	@NotNull
 	private String firstname;
 	private String lastname;
 	@NotEmpty

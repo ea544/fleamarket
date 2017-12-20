@@ -77,7 +77,8 @@ public class ProductController {
 		}
 		Product prod = productService.saveProduct(product);
 		Integer id = prod.getId();
-		return "redirect:/products/photosForm/" + id;
+		// return "redirect:/products/photosForm/" + id;
+		return "redirect:/products/productProfile/" + id;
 	}
 	
 	/**
@@ -89,7 +90,7 @@ public class ProductController {
 	public String showPhotosForm(@PathVariable("id")Integer id, ModelMap model) {
 		ProductProxy product = new ProductProxy();
 		product.setId(id);
-		model.addAttribute("product", product);
+		model.addAttribute("productProxy", product);
 		return "photosForm";
 	}
 	
@@ -134,7 +135,7 @@ public class ProductController {
 	 */
 	@RequestMapping(value = "/productProfile/{id}", method = RequestMethod.GET)
 	public String productProfile(@PathVariable Integer id, ModelMap model) {
-		Product product = productService.getProduct(id);
+		Product product = productService.getProductWithPhotos(id);
 		model.addAttribute("product", product);
 		return "productProfile";
 	}

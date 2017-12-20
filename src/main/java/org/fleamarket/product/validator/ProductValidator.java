@@ -20,7 +20,7 @@ public class ProductValidator implements Validator {
 	@Override
 	public void validate(Object obj, Errors error) {
 		Product product = new Product();
-		ValidationUtils.rejectIfEmptyOrWhitespace(error, "productName", "product.productName.empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(error, "productName", "product.productName.empty", "");
 		// if (!isNumeric(product.getPrice())) {
 		// error.rejectValue("price", "product.price.invalid");
 		// }
