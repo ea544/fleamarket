@@ -17,6 +17,7 @@ public class EventService implements IEventService {
 	public List<Event> getEvents() {
 
 		List<Event> query = eventRepository.findAll();
+		//List<Event> query = eventRepository.getEventsWithVendors();
 		return query;
 	}
 

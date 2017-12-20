@@ -2,6 +2,7 @@ package org.fleamarket.event.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -22,9 +23,10 @@ public class Event {
 	@Id
 	@GeneratedValue
 	private int eventId;
-
+	
+	
 	private String date;
-	//@NotEmpty // (message = "*Please provide a title of the event")
+	//@NotEmpty (message = "*Please provide a title of the event")
 	private String title;
 //	@NotEmpty // (message = "*Please provide a description of the event")
 	private String description;
