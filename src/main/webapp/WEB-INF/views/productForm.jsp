@@ -11,7 +11,8 @@
 			<table>
 				<tr>
 					<td>Product name:</td>
-					<td><form:input type="text" path="productName" /></td>
+					<td><form:input type="text" path="productName" /><br>
+				<form:errors path="productName" /></td>
 				</tr>
 				<tr>
 					<td>Price:</td>

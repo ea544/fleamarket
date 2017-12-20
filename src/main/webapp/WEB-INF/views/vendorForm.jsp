@@ -1,5 +1,6 @@
 <%@ include file="../../title.jsp" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<html xmlns:th="http://www.thymeleaf.org">
 <title>FleaMarket :: Vendor Form</title>
 </head>
 <body>
@@ -9,7 +10,8 @@
 		<table>
 			<tr>
 				<td>First name:</td>
-				<td><form:input type="text" path="firstname" /></td>
+				<td><form:input type="text" path="firstname" /><br>
+				<form:errors path="firstname" /></td>
 			</tr>
 			<tr>
 				<td>Last name:</td>
@@ -17,7 +19,8 @@
 			</tr>
 			<tr>
 				<td>Email:</td>
-				<td><form:input type="text" path="email" /></td>
+				<td><form:input type="text" path="email" /><br>
+				<form:errors path="email" /></td>
 			</tr>
 		</table>
 		<input type="submit" value="Submit"/>
