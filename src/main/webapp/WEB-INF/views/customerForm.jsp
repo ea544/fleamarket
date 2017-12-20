@@ -20,7 +20,10 @@
 	<table>
 		<tr>
 			<td>Name</td>
-			<td><form:input type="text" path="name" placeholder="Name" autofocus="true"></form:input></td>
+			<td><form:input type="text" path="name" placeholder="Name" autofocus="true"></form:input>
+			<br><form:errors path="name" />
+			</td>
+			
 		</tr>
 		<tr>
 			<td>Email</td>
@@ -28,7 +31,9 @@
 		</tr>
 		<tr>
 			<td>Password</td>
-			<td><form:input type="password" path="password" placeholder="password" autofocus="true" ></form:input></td>
+			<td><form:input type="password" path="password" placeholder="password" autofocus="true" ></form:input>
+			<br><form:errors path="password" />
+			</td>
 		</tr>
 		
 		<tr>

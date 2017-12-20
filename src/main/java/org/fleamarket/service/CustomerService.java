@@ -6,9 +6,9 @@ import java.util.Set;
 
 import org.fleamarket.domain.Customer;
 import org.fleamarket.user.dao.CustomerRepository;
-import org.fleamarket.user.dao.UserRepository;
 import org.fleamarket.user.model.Role;
 import org.fleamarket.user.model.User;
+import org.fleamarket.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class CustomerService {
 	@Autowired
 	CustomerRepository customerRepository;
 	@Autowired
-	UserRepository userRepository;
+	UserService userService;
 
 	public CustomerService() {
 
@@ -30,7 +30,7 @@ public class CustomerService {
 		//System.out.println("*****************************************************Password " + cust.getPassword());
 		Set<Role> role = new HashSet<Role>();
 		role.add(new Role("CUSTOMER"));
-		userRepository.save(new User(cust.getEmail(),cust.getPassword(),role));
+		userService.saveUser(new User(cust.getEmail(), cust.getPassword(), role));
 		
 	}
 	
