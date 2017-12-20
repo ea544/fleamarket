@@ -22,6 +22,7 @@ public class Vendor {
 	@Email
 	private String email;
 
+
 	@ManyToOne
 	@JoinColumn(name = "event_id")
 	private Event event;

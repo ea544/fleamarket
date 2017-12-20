@@ -51,12 +51,6 @@
         <property name="basename" value="messages" />
  		<property name="fallbackToSystemLocale" value="false" />
     </bean>
-    
-    <!-- <bean id="validator"
-	  class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-	  <property name="validationMessageSource" ref="messageSource" />
-	</bean> -->
-    
 	<!-- the datasource -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />

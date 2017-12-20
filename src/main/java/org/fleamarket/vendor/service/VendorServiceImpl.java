@@ -43,4 +43,10 @@ public class VendorServiceImpl implements VendorService {
 		return vendor;
 	}
 
+
+	@Override
+	public List<Vendor> findAll() {
+		// TODO Auto-generated method stub
+		return vendorRepository.findAll();
+	}
 }

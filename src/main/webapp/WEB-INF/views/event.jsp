@@ -1,20 +1,15 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<%@ include file="../../title.jsp" %>
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>List of events so far :)</h1>
+<div class="jumbotron"> 
+	<h2>List of events so far :)</h2>
 	<c:url var="deleteEventFunction" value="/event/deleteEvent" ></c:url>
 	<c:url var="getEventFunction" value="/event/getForm" ></c:url>
 	<c:url var="addVendorFunction" value="/event/eventAddVendor" ></c:url>
 	<c:url var="addEventFunction" value="/event/eventForm" ></c:url>
-	<table>
-		<tbody>
+	<table class="table table-stripped table-bordered table-hover">
+		<tbody class="">
 			<tr>
 				<th>Id</th>
 				<th>Title</th>
@@ -38,7 +33,7 @@
 					<td>${event.eventId}</td>
 					<td>${event.title}</td>
 					<td>${event.description}</td>
-					<td></td>
+					<td>${event.date}</td>
 					<td>${event.organizingCostEstimate}</td>
 					<td>${event.subscriptionFee}</td>
 					<td>${event.address.street}</td>
@@ -61,5 +56,7 @@
 		<tbody>
 	</table>
 	<a href="${addEventFunction}">Click here to create an event</a>
+	</div>
 </body>
+
 </html>
