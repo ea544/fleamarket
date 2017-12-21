@@ -9,12 +9,10 @@ import org.springframework.validation.Validator;
 @Component
 public class CustomerValidator implements Validator {
 
-	@Override
 	public boolean supports(Class<?> paramClass) {
 		return Customer.class.equals(paramClass);
 	}
 
-	@Override
 	public void validate(Object obj, Errors error) {
 		Customer customer = new Customer();
 		ValidationUtils.rejectIfEmptyOrWhitespace(error, "password", "customer.password.empty", "");

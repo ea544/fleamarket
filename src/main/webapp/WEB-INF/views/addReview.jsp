@@ -16,6 +16,7 @@
 <body>
 <h1>Flea Market - Add Review</h1>
 	<form:form method="POST" modelAttribute="addReview" >
+	<form:hidden path="id"/>
 	<input type="hidden" name="customerId" value="${customer_id}" ></input> 
 	<input type="hidden" name="productId" value="${product_id}" ></input>   
         <h2>Add Review</h2>
