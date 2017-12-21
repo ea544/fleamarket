@@ -57,7 +57,22 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/customerForm", method = RequestMethod.POST)
-	public String registration(@Valid @ModelAttribute("customerForm") Customer customerForm, BindingResult result,
+	public String registrationSave(@Valid @ModelAttribute("customerForm") Customer customerForm, BindingResult result,
+			Model model) {
+    	
+    	if(result.hasErrors()) {
+    		return "customerForm";
+    	}
+    	else { 
+    	customerService.registerCustomer(customerForm);
+    	//return "login";
+       return "redirect:/login";
+    	//return "redirect:/confirmation";
+    	}
+    } 
+    
+    @RequestMapping(value = "/customerForm/{cusId}", method = RequestMethod.POST)
+	public String registrationUpdate(@Valid @ModelAttribute("customerForm") Customer customerForm, BindingResult result,
 			Model model) {
     	
     	if(result.hasErrors()) {
