@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +34,40 @@ public class ReviewController {
 
 		return "addReview";
 	 }
+	
+	@RequestMapping(value = "/addReview/{rid}", method = RequestMethod.GET)
+	public String editReviewForm(@PathVariable("rid") int rId,
+			Model model,Principal principal) {
+		
+		Review review = reviewService.findById(rId);
+		System.out.println("***************************************________________**********load cu:: " + review.getProduct().getId());
+		model.addAttribute("product_id", review.getProduct().getId());
+		model.addAttribute("customer_id",  review.getCustomer().getId());
+		model.addAttribute("addReview", review);
+
+		return "addReview";
+	 }
+	
+	@RequestMapping(value = "/addReview/{rid}", method = RequestMethod.POST)
+    public String updateReview(@ModelAttribute("addReview") Review review,@RequestParam("customerId") Integer customerId,@RequestParam("productId") Integer productId, Model model) {
+	
+		//System.out.println("***************************************________________*********************************** id:: " + customerId);
+		Customer cust = new Customer();//customerService.getCustomer(customerId);
+		cust.setId(customerId);
+		Product prod = new Product();
+		prod.setId(productId);
+		//System.out.println("***************************************________________*********************************** cu:: " + cust);
+		
+		review.setProduct(prod);
+		review.setCustomer(cust);
+		//System.out.println("***************************************");
+		reviewService.addReview(review);
+		
+		
+		model.addAttribute("customer", customerService.getCustomer(customerId));
+		return "redirect:/customerDetails/"+customerId;
+        //return "customerDetails";
+    } 
 	
 	@RequestMapping(value = "/addReview", method = RequestMethod.POST)
     public String addReview(@ModelAttribute("addReview") Review review,@RequestParam("customerId") Integer customerId,@RequestParam("productId") Integer productId, Model model) {

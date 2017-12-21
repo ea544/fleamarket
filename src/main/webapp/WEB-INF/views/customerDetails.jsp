@@ -16,13 +16,14 @@
 		<td>#</td>
 		<td>Review</td>
 		<td>Product</td>
-		
+		<td>Action</td>
 		</tr>
 		<c:forEach var="review" items="${customer.reviews}">
 			<tr>
 				<td>${review.id}</td>
 				<td>${review.details}</td>
 				<td>${review.product.productName}</td>
+				<td><a href="../addReview/${review.id}">Edit</a></td>
 				
 			</tr>
 		</c:forEach>

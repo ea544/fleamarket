@@ -48,7 +48,7 @@ public class CustomerController {
     }
     
     @RequestMapping(value = "/customerForm/{cusId}", method = RequestMethod.GET)
-    public String registrationEdit(@PathVariable("cusId") int cusId, Model model) {
+    public String registrationEditForm(@PathVariable("cusId") int cusId, Model model) {
         
     	Customer customer = customerService.getCustomer(cusId);
     	model.addAttribute("customerForm", customer);
@@ -80,9 +80,7 @@ public class CustomerController {
     	}
     	else { 
     	customerService.registerCustomer(customerForm);
-    	//return "login";
-       return "redirect:/login";
-    	//return "redirect:/confirmation";
+       return "redirect:/customers";
     	}
     } 
     
