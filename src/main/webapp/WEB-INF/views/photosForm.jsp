@@ -11,19 +11,12 @@
 	<form:form method="POST" action="/fleamarket/products/photos/photosForm" 
 	modelAttribute="productProxy" enctype="multipart/form-data">
 		<form:hidden path="id" />
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<table>
 			<tr>
 				<td>Photo 1:</td>
 				<td><form:input type="file" path="photos" multiple="multiple" /></td>
 			</tr>
-			<!-- <tr>
-				<td>Photo 2:</td>
-				<td><form:input type="file" path="photos" /></td>
-			</tr>
-			<tr>
-				<td>Photo 2:</td>
-				<td><form:input type="file" path="photos" /></td>
-			</tr> -->
 		</table>
 		<input type="submit" value="Submit"/>
 	</form:form>

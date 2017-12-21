@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.fleamarket.event.dao.EventRepository;
 import org.fleamarket.event.model.Event;
+import org.fleamarket.vendor.model.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +55,15 @@ public class EventService implements IEventService {
 
 		eventRepository.save(event);
 
+	}
+
+	/**
+	 * Return a list of events a vendor can subscribe These should be past events
+	 * and those he has not subscribed to
+	 */
+	@Override
+	public List<Event> getAvailableEvents(Vendor vendor) {
+		return eventRepository.getAvailableEvents(vendor);
 	}
 
 }

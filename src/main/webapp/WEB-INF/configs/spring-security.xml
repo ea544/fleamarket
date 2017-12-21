@@ -13,23 +13,26 @@ http://www.springframework.org/schema/security/spring-security.xsd">
 	<bn:bean id="fleaUserDetailService" class="org.fleamarket.user.service.UserDetailServiceImpl" />
 	
 	
-	<http auto-config="true">
-	    <intercept-url pattern="/" access="permitAll()" />
-	    <intercept-url pattern="/login" access="permitAll()" />
+	<http use-expressions="true">
+	    <intercept-url pattern="/**" access="permitAll()" />
+	    <intercept-url pattern="/login*" access="isAnonymous()" />
+	    <form-login login-page="/login"  
+	    	username-parameter="username" 
+			password-parameter="password"
+	    	authentication-failure-url="/login?error=true" 
+	    	default-target-url="/vendors/vendorForm"/>
+	    	<csrf/>
+	    <logout logout-url="/logout" logout-success-url="/login"/>
 	</http>
 	
 	<authentication-manager>
-		<authentication-provider user-service-ref="fleaUserDetailService">
-		<password-encoder ref="bcryptEncoder"/>
-			<!-- <jdbc-user-service data-source-ref="dataSource"/>
-			<user-service>
-				you need {} to use the password encoder. values: bcrypt, noop, scrypt
-				sha256, and pbkdf2
-				<user name="sovello" password="{noop}sovello" authorities="ROLE_USER" />
-				<user name="carlton" password="{noop}carlton" authorities="ROLE_USER" />
-				<user name="evelyn" password="{noop}evelyn" authorities="ROLE_USER" />
-			</user-service> -->
-		</authentication-provider>
+		<authentication-provider>
+	        <jdbc-user-service data-source-ref="dataSource" 
+	        users-by-username-query="select username, password from User where username=?" 
+	        authorities-by-username-query="
+	        SELECT u.username, r.role 
+	        FROM User u, Role r, user_role ur 
+	        WHERE u.username = ur.username AND ur.role_id = r.id AND u.username = ?  "/>
+	    </authentication-provider>
 	</authentication-manager>
-
 </bn:beans>

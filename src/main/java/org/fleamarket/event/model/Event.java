@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import org.fleamarket.vendor.model.Vendor;
@@ -34,9 +34,8 @@ public class Event {
 	@Embedded
 	private Address address;
 
-	@OneToMany
-	// @OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "eventId")
+	@ManyToMany
+	@JoinColumn(name = "vendor_id")
 	private List<Vendor> vendors = new ArrayList<Vendor>();
 
 	@OneToOne

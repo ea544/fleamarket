@@ -16,7 +16,7 @@ public interface VendorService {
 
 	public void subscribeToEvent(Vendor vendor, Event event);
 
-	public List<Vendor> findVendorWithEvents(Integer id);
+	public Vendor findVendorWithEvents(Integer id);
 
 	public List<Vendor> findAll();
 }

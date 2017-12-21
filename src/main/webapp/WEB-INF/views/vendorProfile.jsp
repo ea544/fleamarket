@@ -21,18 +21,25 @@
 					</td>
 				</tr>
 				<c:if test="${vendorEvents.size() != 0}">
-				<tr><th>Events Subscribed</th></tr>
-				
-					<c:forEach items="${vendorEvents}" var="vend">
+				<table class="table table-hover">
+					<thead>
+						<tr><th colspan="3">Events Subscribed</th></tr>
+						<tr><th>Event</th><th>Date</th><th>City</th></tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${vendorEvents}" var="event">
 						<tr>
-							<td>${vend.event.title}</td>
-							<td>${vend}</td>
-							<td>${vend }</td>
-							<td><a href="<c:url value="/vendors/vendor/${vendor.id}/availableEvents"/>">Subscribe</a>
+							<td>${event.title} </td>
+							<td>${event.date} </td>
+							<td>${event.address.city }</td>
+							<td>
 							</td>
 						</tr>
 					</c:forEach>
-					</c:if>
+					</tbody>
+					
+				</table>
+				</c:if>
 			</tbody>
 		</table>
 		
