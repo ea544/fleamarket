@@ -43,20 +43,30 @@ public class CustomerController {
     @RequestMapping(value = "/customerForm", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("customerForm", new Customer());
-
+        model.addAttribute("edit", false);
+        return "customerForm";
+    }
+    
+    @RequestMapping(value = "/customerForm/{cusId}", method = RequestMethod.GET)
+    public String registrationEdit(@PathVariable("cusId") int cusId, Model model) {
+        
+    	Customer customer = customerService.getCustomer(cusId);
+    	model.addAttribute("customerForm", customer);
+    	model.addAttribute("edit", true);
         return "customerForm";
     }
 
     @RequestMapping(value = "/customerForm", method = RequestMethod.POST)
-
 	public String registration(@Valid @ModelAttribute("customerForm") Customer customerForm, BindingResult result,
 			Model model) {
+    	
     	if(result.hasErrors()) {
     		return "customerForm";
     	}
-    	else {
+    	else { 
     	customerService.registerCustomer(customerForm);
-        return "redirect:/login";
+    	return "login";
+       // return "redirect:/login";
     	//return "redirect:/confirmation";
     	}
     } 

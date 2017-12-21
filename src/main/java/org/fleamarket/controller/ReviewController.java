@@ -32,7 +32,6 @@ public class ReviewController {
 		model.addAttribute("addReview", new Review());
 
 		return "addReview";
-		//addReview?cid=1&pid=1
 	 }
 	
 	@RequestMapping(value = "/addReview", method = RequestMethod.POST)
