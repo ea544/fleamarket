@@ -25,7 +25,8 @@
 			<td>${customer.email}</td>
 			<td>${customer.address.street}</td>
 			<td>${customer.address.city}</td>
-			<td><a href="customerDetails/${customer.id}">view customer details</a></td>
+			<td><a href="customerDetails/${customer.id}">View</a>
+			| <a href="customerForm/${customer.id}">Edit</a>	</td>
 			
 			</tr>
 			</c:forEach>
