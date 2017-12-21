@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<form:form method="POST" modelAttribute="customerForm" action="/customerForm" >
+<form:form method="POST" modelAttribute="customerForm">
 <form:hidden path="id"/>
         <h2>Registration Form</h2>
 	<table>

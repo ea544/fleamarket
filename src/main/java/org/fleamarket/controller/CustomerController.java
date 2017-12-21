@@ -65,8 +65,8 @@ public class CustomerController {
     	}
     	else { 
     	customerService.registerCustomer(customerForm);
-    	return "login";
-       // return "redirect:/login";
+    	//return "login";
+       return "redirect:/login";
     	//return "redirect:/confirmation";
     	}
     } 
