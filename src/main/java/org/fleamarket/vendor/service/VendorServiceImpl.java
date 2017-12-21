@@ -33,13 +33,13 @@ public class VendorServiceImpl implements VendorService {
 
 	@Override
 	public void subscribeToEvent(Vendor vendor, Event event) {
-		vendor.setEvent(event);
+		vendor.getEvents().add(event);
 		vendorRepository.save(vendor);
 	}
 
 	@Override
-	public List<Vendor> findVendorWithEvents(Integer id) {
-		List<Vendor> vendor = vendorRepository.findVendorWithEvents(id);
+	public Vendor findVendorWithEvents(Integer id) {
+		Vendor vendor = vendorRepository.findVendorWithEvents(id);
 		return vendor;
 	}
 

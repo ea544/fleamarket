@@ -1,6 +1,5 @@
 package org.fleamarket.vendor.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -34,12 +33,9 @@ public class VendorController {
 	@Autowired
 	VendorValidator vendorValidator;
 
-	// @Autowired
-	// private Validator validator;
 
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
-		// binder.setValidator(validator);
 		binder.addValidators(vendorValidator);
 	}
 
@@ -59,13 +55,9 @@ public class VendorController {
 	 */
 	@RequestMapping(value = "/vendorProfile/{id}", method = RequestMethod.GET)
 	public String vendorProfile(@PathVariable Integer id, ModelMap model) {
-		List<Vendor> vendorEvents = vendorService.findVendorWithEvents(id);
-		Optional<Vendor> vendor = vendorService.findVendorById(id);
-		if (vendor.isPresent()) {
-			System.out.println("We got " + vendor.get());
-			model.addAttribute("vendor", vendor.get());
-		}
-		model.addAttribute("vendorEvents", vendorEvents);
+		Vendor vendor = vendorService.findVendorWithEvents(id);
+		model.addAttribute("vendor", vendor);
+		model.addAttribute("vendorEvents", vendor.getEvents());
 
 		return "vendorProfile";
 	}
@@ -120,7 +112,7 @@ public class VendorController {
 	 */
 	@RequestMapping(value = "/vendor/{id}/availableEvents", method = RequestMethod.GET)
 	public String subscribeToEventPage(@PathVariable Integer id, ModelMap model) {
-		model.addAttribute("events", eventService.getEvents());
+		model.addAttribute("events", eventService.getAvailableEvents(vendorService.findVendorById(id).get()));
 		model.addAttribute("vendorId", id);
 		return "availableEvents";
 	}
@@ -130,10 +122,13 @@ public class VendorController {
 	 * 
 	 */
 	@RequestMapping(value = "/vendor/{id}/availableEvents/{eventId}", method = RequestMethod.GET)
-	public String subscribeToEventAction(@PathVariable Integer id, @PathVariable Integer eventId,
+	public String subscribeToEventAction(@PathVariable("id") Integer id, @PathVariable("eventId") Integer eventId,
 			ModelMap model) {
-		vendorService.subscribeToEvent(vendorService.findVendorById(id).get(),
-				(Event) eventService.getEventById(eventId));
+		Vendor vendor = vendorService.findVendorWithEvents(id);
+		Event event = eventService.getEventById(eventId);
+		event.getVendors().add(vendor);
+		eventService.createEvent(event);
+		vendorService.subscribeToEvent(vendor, event);
 
 		return "redirect:/vendors/vendorProfile/" + id;
 	}

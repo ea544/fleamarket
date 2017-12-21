@@ -17,11 +17,11 @@ public interface VendorRepository extends JpaRepository<Vendor, Integer> {
 
 	Vendor findByEmail(String email);
 
-	@Query("FROM Vendor v RIGHT JOIN v.event e where v.id = :id")
-	List<Vendor> findVendorWithEvents(@Param("id") Integer id);
+	@Query("FROM Vendor v LEFT JOIN FETCH v.events e where v.id = :id")
+	Vendor findVendorWithEvents(@Param("id") Integer id);
 	
 	@Override
-	@Query("FROM Vendor v LEFT JOIN FETCH v.event")
+	@Query("FROM Vendor v LEFT JOIN FETCH v.events")
 	List<Vendor> findAll();
 
 }

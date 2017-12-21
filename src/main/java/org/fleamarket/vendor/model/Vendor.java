@@ -1,10 +1,13 @@
 package org.fleamarket.vendor.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -23,16 +26,18 @@ public class Vendor {
 	private String email;
 
 
-	@ManyToOne
+	@ManyToMany
+	@JoinTable(name = "Vendor_Event", joinColumns = @JoinColumn(name = "addressPK"), inverseJoinColumns = @JoinColumn(name = "personPK"))
 	@JoinColumn(name = "event_id")
-	private Event event;
+	private List<Event> events;
 
-	public Event getEvent() {
-		return event;
+
+	public List<Event> getEvents() {
+		return events;
 	}
 
-	public void setEvent(Event event) {
-		this.event = event;
+	public void setEvents(List<Event> events) {
+		this.events = events;
 	}
 
 	public Vendor() {}
